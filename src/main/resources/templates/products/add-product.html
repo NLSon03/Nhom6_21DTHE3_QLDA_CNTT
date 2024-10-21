@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/headAdmin :: headAdmin"></head>
+<body id="crancy-dark-light">
+<div class="crancy-body-area">
+    <!-- crancy Admin Menu -->
+    <div th:replace="Fragment/AdminMenu :: AdminMenu"></div>
+    <!-- End crancy Admin Menu -->
+
+    <!-- Start Header -->
+    <header th:replace="Fragment/AdminHeader :: AdminHeader"></header>
+    <!-- End Header -->
+
+    <!-- crancy Dashboard -->
+    <section class="crancy-adashboard crancy-show">
+        <div class="container container__bscreen">
+
+            <div class="row">
+                <div class="col-xxl-8 col-12 crancy-main__column">
+                    <div class="crancy-body">
+                        <!-- Dashboard Inner -->
+                        <h1>Thêm Sản Phẩm</h1>
+                        <!-- <form th:action="@{/products/add}" th:object="${product}" method="post"
+                        class="needs-validation" novalidate>-->
+                        <form th:action="@{/products/add}" th:object="${product}" method="post"
+                              class="needs-validation" novalidate enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name:</label>
+                                <input type="text" th:field="*{name}" class="form-control" id="name"
+                                       required>
+                                <div class="text-danger" th:if="${#fields.hasErrors('name')}"
+                                     th:errors="*{name}"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price:</label>
+                                <input type="text" th:field="*{price}" class="form-control" id="price"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category:</label>
+                                <select th:field="*{category}" class="form-control" id="category">
+                                    <option th:each="category : ${categories}" th:value="${category.id}"
+                                            th:text="${category.name}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nums" class="form-label">Quantity:</label> <input type="number"
+                                                                                              th:field="*{nums}" class="form-control" id="nums" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="detail" class="form-label">Description (optional):</label>
+                                <textarea th:field="*{detail}" class="form-control" id="detail"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="meta" class="form-label">Meta Description (optional):</label>
+                                <textarea th:field="*{meta}" class="form-control" id="meta"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="order" class="form-label">Order (optional):</label>
+                                <input type="number" th:field="*{order}" class="form-control" id="order">
+                            </div>
+                            <div class="mb-3">
+                                <label for="link" class="form-label">Link (optional):</label>
+                                <input type="text" th:field="*{link}" class="form-control" id="link">
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Product Image:</label>
+                                <input type="file" id="image" name="image" class="form-control"/>
+                            </div>
+                            <div class="mb-3 form-check"><input type="checkbox" class="form-check-input" id="hide" th:field="*{hide}">
+                                <label class="form-check-label" for="hide">Hide</label>
+                            </div><button type="submit" class="btn btn-primary">Thêm </button>
+                            <a th:href="@{/products}" class="btn btn-warning">Cancel</a>
+                        </form>
+
+                        <!-- End Dashboard Inner -->
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-12 crancy-main__sidebar">
+                    <!-- Crancy Sidebar -->
+
+                    <!-- End Crancy Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End crancy Dashboard -->
+</div>
+
+<div th:replace="Fragment/scriptAdmin :: scriptAdmin"></div>
+</body>
+
+</html>

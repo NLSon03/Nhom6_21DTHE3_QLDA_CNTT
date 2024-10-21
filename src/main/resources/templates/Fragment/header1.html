@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<header th:fragment="header1" class="main-header header-style-two">
+
+    <!-- Header top -->
+    <div class="header-top-two" >
+        <div class="auto-container">
+            <div class="inner-container">
+                <div class="top-left">
+                    <ul class="contact-list clearfix">
+                        <li><i class="flaticon-hospital-1"></i>123 Điện Biên Phủ TPHCM </li>
+                        <li><i class="flaticon-back-in-time"></i>Thứ Hai đến thứ Bảy: 08:30 - 18:00. ĐÓNG Của CHỦ NHẬT</li>
+                    </ul>
+                </div>
+                <div class="top-right">
+                    <ul class="social-icon-one">
+                        <div sec:authorize="hasAuthority('ADMIN')">
+                            <li><a th:href="@{/thuocs/thuocAdmin}"><span class="fab btn-outline-primary">Admin</span></a></li>
+                        </div>
+                        <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                        <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="#"><span class="fab fa-skype"></span></a></li>
+                        <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top -->
+
+    <!-- Header Lower -->
+    <div class="header-lower">
+        <div class="auto-container">
+            <!-- Main box -->
+            <div class="main-box">
+
+                <div class="logo-box">
+                    <div class="logo"><a href="http://localhost:8080/"><img th:src="@{/fe/images/logo-9.png}" alt="" title=""></a></div>
+                </div>
+
+                <!--Nav Box-->
+                <div class="nav-outer">
+                    <nav class="nav main-menu">
+                        <ul class="navigation" id="navbar">
+<!--                            <li class="dropdown">-->
+<!--                                <span><a href="http://localhost:8080" style="color: white">TRANG CHỦ</a></span>-->
+
+<!--                            </li>-->
+
+<!--&lt;!&ndash;                            <li class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <span>Pages</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="about-us.html">About Us</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="services.html">Services</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="gallery.html">Gallery</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="pricing-table.html">Pricing Table</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="elements.html">UI Elements</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="coming-soon.html">Coming Soon</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="error-page.html">Error 404</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="terms-and-condition.html">Terms and Condition</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </li>&ndash;&gt;-->
+<!--                            <li class="dropdown">-->
+<!--                                <span>Bác Sĩ</span>-->
+<!--                                <ul>-->
+<!--                                    <li><a href="/doctors/list-user">Bác Sĩ</a></li>-->
+<!--&lt;!&ndash;                                    <li><a href="doctor-detail.html">Doctor Detail</a></li>&ndash;&gt;-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                            <li class="dropdown">-->
+<!--                                <span>Khoa</span>-->
+<!--                                <ul>-->
+<!--                                    <li><a href="/khoas/list-user">Khoa</a></li>-->
+<!--&lt;!&ndash;                                    <li><a href="department-detail.html">Cardiology</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="department-detail.html">Neurology</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="department-detail.html">Urology</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="department-detail.html">Gynecological</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="department-detail.html">Pediatrical</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="department-detail.html">Laboratory</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="department-detail.html">Department Detail</a></li>&ndash;&gt;-->
+<!--                                </ul>-->
+<!--                            </li>-->
+
+<!--                            <li class="dropdown">-->
+<!--                                <span>Blog</span>-->
+<!--                                <ul>-->
+<!--                                    <li><a href="/blogs/blog-list-user">Blog</a></li>-->
+<!--&lt;!&ndash;                                    <li><a href="blog-checkboard.html">Checkerboard</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="blog-masonry.html">Masonry</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="blog-two-col.html">Two Columns</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="blog-three-col.html">Three Colums</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="blog-four-col-wide.html">Four Colums</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span>Post Types</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <li><a href="blog-post-image.html">Image Post</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <li><a href="blog-post-gallery.html">Gallery Post</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <li><a href="blog-post-link.html">Link Post</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <li><a href="blog-post-audio.html">Audio Post</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <li><a href="blog-post-quote.html">Quote Post</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <li><a href="blog-post-video.html">Video Post</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </li>&ndash;&gt;-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                            <li class="dropdown current">-->
+<!--                                <span>Cửa Hàng</span>-->
+<!--                                <ul>-->
+<!--                                    <li><a href="/thuocs">Cửa Hàng</a></li>-->
+<!--                                    <li><a href="/cart">Giỏ Hàng</a></li>-->
+<!--&lt;!&ndash;                                    <li><a href="shopping-cart.html">Shopping Cart</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="checkout.html">Checkout</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <li><a href="login.html">Login</a></li>&ndash;&gt;-->
+<!--                                </ul>-->
+<!--                            </li>-->
+                            <li><a href="http://localhost:8080" style="color: white">TRANG CHỦ</a></li>
+                            <li><a href="/doctors/list-user">Bác Sĩ</a></li>
+                            <li><a href="/khoas/list-user">Khoa</a></li>
+                            <li><a href="/blogs/blog-list-user">Blog</a></li>
+                            <li class="dropdown current">
+                                <span>Cửa Hàng</span>
+                                <ul>
+                                    <li><a href="/thuocs">Cửa Hàng</a></li>
+                                    <li><a href="/cart">Giỏ Hàng</a></li>
+                                    <!--                                    <li><a href="shopping-cart.html">Shopping Cart</a></li>-->
+                                    <!--                                    <li><a href="checkout.html">Checkout</a></li>-->
+                                    <!--                                    <li><a href="login.html">Login</a></li>-->
+                                </ul>
+                            </li>
+                            <li><a href="contact.html">Liên Hệ</a></li>
+                        </ul>
+                    </nav>
+                    <!-- Main Menu End-->
+
+                    <div class="outer-box">
+                        <!-- Cart Btn -->
+                        <a href="/cart"><button class="cart-btn"><i class="icon flaticon-shopping-cart"></i><span class="count">3</span></button></a>
+
+
+                        <button class="search-btn"><span class="fa fa-search"></span></button>
+                        <div class="dropdown" style="margin-right: -20px" sec:authorize="!isAuthenticated()">
+                            <button class="btn btn-outline-primary-2x dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/login">Đăng nhập</a>
+                                <a class="dropdown-item" href="/register">Đăng kí</a>
+                            </div>
+                        </div>
+                        <div class="dropdown" style="margin-right: -20px" sec:authorize="isAuthenticated()">
+                            <button class="btn btn-outline-primary-2x dropdown-toggle" type="button" id="dropdownMenuButtonn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </button>
+                            <form th:action="@{/logout}" method="post">
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button class="dropdown-item" type="submit">Đăng Xuất</button>
+                                </div>
+                            </form>
+                        </div>
+                        <li class="nav-item" sec:authorize="!isAuthenticated()">
+                            <a class="btn btn-outline-light" href="/login">Login</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Header  -->
+    <div class="sticky-header">
+        <div class="auto-container">
+            <div class="main-box">
+                <div class="logo-box">
+                    <div class="logo"><a href="http://localhost:8080/"><img src="images/logo.png" alt="" title=""></a></div>
+                </div>
+
+                <!--Keep This Empty / Menu will come through Javascript-->
+            </div>
+        </div>
+    </div><!-- End Sticky Menu -->
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+
+        <!--Nav Box-->
+        <div class="nav-outer clearfix">
+
+            <div class="outer-box">
+                <!-- Search Btn -->
+                <div class="search-box">
+                    <button class="search-btn mobile-search-btn"><i class="flaticon-magnifying-glass"></i></button>
+                </div>
+
+                <!-- Cart Btn -->
+                <button class="cart-btn"><i class="icon flaticon-shopping-cart"></i><span class="count">3</span></button>
+
+                <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="fa fa-bars"></span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="nav-mobile"></div>
+
+    <!-- Header Search -->
+    <div class="search-popup">
+        <span class="search-back-drop"></span>
+        <button class="close-search"><span class="fa fa-times"></span></button>
+
+        <div class="search-inner">
+            <form method="post" action="https://skyethemes.com/html/2022/medicoz/blog-showcase.html">
+                <div class="form-group">
+                    <input type="search" name="search-field" value="" placeholder="Search..." required="">
+                    <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Header Search -->
+
+    <!-- Sidebar Cart  -->
+    <div class="sidebar-cart">
+        <span class="cart-back-drop"></span>
+        <div class="shopping-cart">
+            <div class="cart-header">
+                <div class="title">Shopping Cart <span>(3)</span></div>
+                <button class="close-cart"><span class="flaticon-add"></span></button>
+            </div>
+            <ul class="shopping-cart-items">
+                <li class="cart-item">
+                    <img src="images/resource/products/product-thumb-1.jpg" alt="#" class="thumb" />
+                    <span class="item-name">First Aid Kit</span>
+                    <span class="item-quantity">1 x <span class="item-amount">$50.00</span></span>
+                    <a href="shop-single.html" class="product-detail"></a>
+                    <button class="remove">Remove</button>
+                </li>
+
+                <li class="cart-item">
+                    <img src="images/resource/products/product-thumb-2.jpg" alt="#" class="thumb"  />
+                    <span class="item-name">Vitamin Tablet</span>
+                    <span class="item-quantity">1 x <span class="item-amount">$25.00</span></span>
+                    <a href="shop-single.html" class="product-detail"></a>
+                    <button class="remove">Remove</button>
+                </li>
+
+                <li class="cart-item">
+                    <img src="images/resource/products/product-thumb-3.jpg" alt="#" class="thumb"  />
+                    <span class="item-name">Zinc Tablet</span>
+                    <span class="item-quantity">1 x <span class="item-amount">$15.00</span></span>
+                    <a href="shop-single.html" class="product-detail"></a>
+                    <button class="remove">Remove</button>
+                </li>
+            </ul>
+
+            <div class="cart-footer">
+                <div class="shopping-cart-total"><strong>Subtotal:</strong> $90.00</div>
+                <a href="shopping-cart.html" class="theme-btn btn-style-three"><span class="btn-title">View Cart</span></a>
+                <a href="checkout.html" class="theme-btn btn-style-one"><span class="btn-title">Checkout</span></a>
+            </div>
+        </div> <!-- End shopping-cart -->
+    </div>
+    <!-- End Sidebar Cart  -->
+</header>
+<!--End Main Header -->

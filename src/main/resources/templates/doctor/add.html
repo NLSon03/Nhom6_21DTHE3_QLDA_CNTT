@@ -1,0 +1,221 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title>Add Doctor</title>-->
+<!--  <th:block th:replace="~{layout::link-css}"></th:block>-->
+<!--  <th:block th:replace="~{layout::custom-css}"></th:block>-->
+<!--</head>-->
+<!--<body>-->
+<!--<th:block th:replace="~{layout::header}"></th:block>-->
+<!--<div class="container">-->
+<!--  <h1>Add Doctor</h1>-->
+<!--  <form th:action="@{/doctors/add}" th:object="${doctors}" method="post" enctype="multipart/form-data">-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="name">Tenbs:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{name}" id="name">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="introduction">Gioithieu:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{introduction}" id="introduction">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="experience">KinhNghiem:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{experience}" id="experience">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="education">Hocvan:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{education}" id="education">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="email">EMAIL:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{email}" id="email">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="phone">phone:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{phone}" id="phone">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="phone">cc:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{speciality}" id="cc">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="address">dia chi:</label>-->
+<!--      <input class="form-control" type="text" th:field="*{address}" id="address">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--      <label class="form-label" for="loaithuoc">LoaiThuoc:</label><span class="text-danger">*</span>-->
+<!--      <select class="form-control" id="loaithuoc" th:field="*{khoa.id}">-->
+<!--        <option value="">&#45;&#45; Select Category &#45;&#45;</option>-->
+<!--        <option th:each="khoa : ${khoas}"-->
+<!--                th:value="${khoa.id}"-->
+<!--                th:text="${khoa.name}">-->
+<!--        </option>-->
+<!--      </select>-->
+<!--    </div>-->
+
+<!--    <div id="timming-container">-->
+<!--      <div class="timming-entry">-->
+<!--        <label for="day">Day:</label>-->
+<!--        <input type="text" id="day" th:field="*{timmings[0].day}" placeholder="Monday - Friday">-->
+<!--        <label for="hours">Hours:</label>-->
+<!--        <input type="text" id="hours" th:field="*{timmings[0].hours}" placeholder="08:00 - 20:00">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <button type="button" onclick="addTimming()">Add Another Timming</button>-->
+<!--    <div>-->
+<!--      <label for="imageFile">Hình Ảnh:</label>-->
+<!--      <input type="file" id="imageFile" name="imageFile">-->
+<!--    </div>-->
+
+<!--    <input type="submit" class="btn btn-primary" value="Save">-->
+<!--  </form>-->
+<!--  <br>-->
+<!--  <a th:href="@{/nhasanxuats}">Back to List</a>-->
+<!--</div>-->
+<!--<th:block th:replace="~{layout::footer}"></th:block>-->
+
+<!--<script th:inline="javascript">-->
+<!--  function addTimming() {-->
+<!--    var container = document.getElementById('timming-container');-->
+<!--    var index = container.children.length;-->
+<!--    var div = document.createElement('div');-->
+<!--    div.className = 'timming-entry';-->
+<!--    div.innerHTML = `-->
+<!--            <label for="day">Day:</label>-->
+<!--            <input type="text" name="timmings[${index}].day" placeholder="Day">-->
+<!--            <label for="hours">Hours:</label>-->
+<!--            <input type="text" name="timmings[${index}].hours" placeholder="Hours">-->
+<!--        `;-->
+<!--    container.appendChild(div);-->
+<!--  }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/headAdmin :: headAdmin"></head>
+<body id="crancy-dark-light">
+<div class="crancy-body-area">
+  <!-- crancy Admin Menu -->
+  <div th:replace="Fragment/AdminMenu :: AdminMenu"></div>
+  <!-- End crancy Admin Menu -->
+
+  <!-- Start Header -->
+  <header th:replace="Fragment/AdminHeader :: AdminHeader"></header>
+  <!-- End Header -->
+
+  <!-- crancy Dashboard -->
+  <section class="crancy-adashboard crancy-show">
+    <div class="container container__bscreen">
+
+      <div class="row">
+        <div class="col-xxl-8 col-12 crancy-main__column">
+          <div class="crancy-body">
+            <!-- Dashboard Inner -->
+            <h1>Thêm Bác sĩ</h1>
+            <!-- <form th:action="@{/products/add}" th:object="${product}" method="post"
+            class="needs-validation" novalidate>-->
+            <form th:action="@{/doctors/add}" th:object="${doctor}" method="post" enctype="multipart/form-data">
+              <div class="col-6 mb-3">
+                <label class="form-label" for="name">Tenbs:</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="introduction">Gioithieu:</label>
+                <input class="form-control" type="text" th:field="*{introduction}" id="introduction">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="experience">KinhNghiem:</label>
+                <input class="form-control" type="text" th:field="*{experience}" id="experience">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="education">Hocvan:</label>
+                <input class="form-control" type="text" th:field="*{education}" id="education">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="email">EMAIL:</label>
+                <input class="form-control" type="text" th:field="*{email}" id="email">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="phone">phone:</label>
+                <input class="form-control" type="text" th:field="*{phone}" id="phone">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="phone">cc:</label>
+                <input class="form-control" type="text" th:field="*{speciality}" id="cc">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="address">dia chi:</label>
+                <input class="form-control" type="text" th:field="*{address}" id="address">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label" for="loaithuoc">LoaiThuoc:</label><span class="text-danger">*</span>
+                <select class="form-control" id="loaithuoc" th:field="*{khoa.id}">
+                  <option value="">-- Select Category --</option>
+                  <option th:each="khoa : ${khoas}"
+                          th:value="${khoa.id}"
+                          th:text="${khoa.name}">
+                  </option>
+                </select>
+              </div>
+              <br><br>
+              <div>
+                <label for="imageFile">Hình Ảnh:</label>
+                <input type="file" id="imageFile" name="imageFile">
+              </div>
+              <div id="timming-container">
+                <div class="timming-entry">
+                  <br>
+                  <label for="day">Thứ 2 - CN:</label>
+                  <input type="text" id="day" th:field="*{timmings[0].day}" placeholder="Monday - Friday">
+                  <label for="hours">Thời Gian:</label>
+                  <input type="text" id="hours" th:field="*{timmings[0].hours}" placeholder="08:00 - 20:00">
+                </div>
+              </div>
+              <br>
+              <button type="button" class="btn btn-success" onclick="addTimming()">Thêm Thời Gian Khác</button>
+              <br>
+              <button type="submit" class="btn btn-primary" value="Save">Thêm</button>
+              <a class="btn btn-warning" th:href="@{/doctors}">Quay Lại</a>
+            </form>
+
+            <!-- End Dashboard Inner -->
+          </div>
+        </div>
+
+        <div class="col-xxl-4 col-12 crancy-main__sidebar">
+          <!-- Crancy Sidebar -->
+
+          <!-- End Crancy Sidebar -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End crancy Dashboard -->
+</div>
+<script th:inline="javascript">
+  function addTimming() {
+    var container = document.getElementById('timming-container');
+    var index = container.children.length;
+    var div = document.createElement('div');
+    div.className = 'timming-entry';
+    div.innerHTML = `
+            <label for="day">(Thứ 2 - CN):</label>
+            <input type="text" name="timmings[${index}].day" placeholder="Day">
+            <label for="hours">(Thời Gian):</label>
+            <input type="text" name="timmings[${index}].hours" placeholder="Hours">
+        `;
+    container.appendChild(div);
+  }
+</script>
+<div th:replace="Fragment/scriptAdmin :: scriptAdmin"></div>
+</body>
+
+</html>
+

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="Fragment/head :: head"></head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <!-- Main Header-->
+    <header th:replace="Fragment/header1 :: header1"></header>
+
+    <!--Page Title-->
+    <section class="page-title" style="background-image: url(/fe/images/background/8.jpg);">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1>Our Shop</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Shop</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+    <!-- Sidebar Page Container -->
+    <div class="sidebar-page-container">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Content Side-->
+                <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                    <div class="our-shop">
+                        <div class="shop-upper-box">
+                            <div class="orderby">
+                                <select name="orderby">
+                                    <option value="default">Default Sorting</option>
+                                    <option value="popularity">Sort by popularity</option>
+                                    <option value="rating" >Sort by average rating</option>
+                                    <option value="date" >Sort by newness</option>
+                                    <option value="price" >Sort by price: low to high</option>
+                                    <option value="price-desc" >Sort by price: high to low</option>
+                                </select>
+                            </div>
+                            <div class="items-label">Showing all 9 results</div>
+                        </div>
+
+                        <div class="row">
+
+                            <!-- Shop Item -->
+                            <div th:each="product : ${products}" class="shop-item col-lg-4 col-md-6 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a th:href="@{/products/detail/{id}(id=${product.id})}"><img th:src="@{${product.thumnail}}" alt=""></a></figure>
+                                        <a th:href="@{/products/detail/{id}(id=${product.id})}"><span class="onsale" th:text="${product.category.name}"></span></a>
+                                    </div>
+                                    <div class="lower-content">
+                                        <div class="rating">
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star light"></span>
+                                        </div>
+                                        <a th:href="@{/products/detail/{id}(id=${product.id})}"><h4 class="name" th:text="${product.name}"></h4></a>
+                                        <a th:href="@{/products/detail/{id}(id=${product.id})}"><div class="price" th:text="${product.price}"></div></a>
+                                        <form th:action="@{/cart/add}" method="post"
+                                              sec:authorize="isAuthenticated()">
+<!--                                            <input type="number" name="quantity" min="1" value="1"-->
+<!--                                                   class="form-control d-inline-block"-->
+<!--                                                   style="width: 70px;">-->
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" th:value="${product.id}"
+                                                   name="productId"/>
+
+                                            <button type="submit" class="theme-btn add-to-cart">Thêm Vào
+                                                Giỏ</button>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Styled Pagination-->
+                        <ul class="styled-pagination">
+                            <li><button id="leftButton" class="arrow-button" onclick="decreasePage()"><span class="flaticon-left"></span></button></li>
+                            <li th:class="${currentPage == 1 ? 'active' : ''}">
+                                <a th:href="@{/products(page=1, pageSize=${pageSize})}">1</a>
+                            </li>
+                            <li th:each="page : ${#numbers.sequence(2, totalPages)}" th:class="${currentPage == page ? 'active' : ''}">
+                                <a id="rightArrow" th:href="@{/products(page=${page}, pageSize=${pageSize})}" th:text="${page}"></a>
+                            </li>
+                            <li><button id="rightButton" class="arrow-button" onclick="increasePage()"><span class="flaticon-right"></span></button></li>
+                        </ul>
+                        <!--End Styled Pagination-->
+                    </div>
+                </div>
+
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                    <aside class="sidebar">
+                        <!--search box-->
+                        <div class="sidebar-widget search-box">
+                            <form method="post" action="https://skyethemes.com/html/2022/medicoz/blog.html">
+                                <div class="form-group">
+                                    <input type="search" name="search-field" value="" placeholder="Search....." required="">
+                                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Categories -->
+                        <div class="sidebar-widget category-list">
+                            <div class="sidebar-title"><h3>Categories</h3></div>
+                            <ul class="cat-list">
+                                <li><a href="#">Procedures <span>(06)</span></a></li>
+                                <li><a href="#">Transplantation <span>(02)</span></a></li>
+                                <li class="active"><a href="#">Management <span>(05)</span></a></li>
+                                <li><a href="#">Healthcare Tips <span>(25)</span></a></li>
+                                <li><a href="#">Uncategorized <span>(04)</span></a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Latest News -->
+                        <div class="sidebar-widget latest-news">
+                            <div class="sidebar-title"><h3>Popular Products</h3></div>
+                            <div class="widget-content">
+                                <article class="post">
+                                    <div class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/product-thumb-1.jpg" alt=""></a></div>
+                                    <h5><a href="shop-single.html">First Aid Kit</a></h5>
+                                    <div class="price">$9.00</div>
+                                    <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+                                </article>
+
+                                <article class="post">
+                                    <div class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/product-thumb-2.jpg" alt=""></a></div>
+                                    <h5><a href="shop-single.html">Vitamin C+</a></h5>
+                                    <div class="price">$20.00</div>
+                                    <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+                                </article>
+
+                                <article class="post">
+                                    <div class="post-thumb"><a href="shop-single.html"><img src="images/resource/products/product-thumb-3.jpg" alt=""></a></div>
+                                    <h5><a href="shop-single.html">Zinc Tablet</a></h5>
+                                    <div class="price">$ 18.00</div>
+                                    <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+                                </article>
+                            </div>
+                        </div>
+
+                        <!-- Newslatters-->
+                        <div class="sidebar-widget newslatters">
+                            <div class="sidebar-title"><h3><span class="icon flaticon-rss-symbol"></span>Newsletter</h3></div>
+                            <div class="text">Enter your email address below to subscribe to our newsletter</div>
+                            <form method="post" action="https://skyethemes.com/html/2022/medicoz/blog-sidebar.html">
+                                <div class="form-group">
+                                    <input type="text" name="input" value="" placeholder="Your email address..." required="">
+                                    <button type="submit" class="theme-btn"><span class="btn-title">Subscribe</span></button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <!-- Tags -->
+                        <div class="sidebar-widget tags">
+                            <div class="sidebar-title"><h3>Tag Cloud</h3></div>
+                            <ul class="popular-tags clearfix">
+                                <li><a href="#">Ideas</a></li>
+                                <li><a href="#">Doctor</a></li>
+                                <li><a href="#">Health</a></li>
+                                <li><a href="#">Department</a></li>
+                                <li><a href="#">Nurse</a></li>
+                                <li><a href="#">Growth</a></li>
+                                <li><a href="#">Expert</a></li>
+                                <li><a href="#">Tips</a></li>
+                                <li><a href="#">Service</a></li>
+                                <li><a href="#">Medical</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Sidebar Container -->
+
+    <!-- Clients Section -->
+    <section class="clients-section alternate">
+        <div class="auto-container">
+
+            <!-- Sponsors Outer -->
+            <div class="sponsors-outer">
+                <!--clients carousel-->
+                <ul class="clients-carousel owl-carousel owl-theme">
+                    <li class="slide-item"> <a href="#"><img src="images/clients/1.png" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img src="images/clients/2.png" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img src="images/clients/3.png" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img src="images/clients/4.png" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img src="images/clients/5.png" alt=""></a> </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--End Clients Section -->
+
+    <!-- Main Footer -->
+    <footer th:replace="Fragment/footer :: footer"></footer>
+    <!--End Main Footer -->
+
+</div><!-- End Page Wrapper -->
+
+
+<!-- Color Palate / Color Switcher -->
+<div class="color-palate">
+    <div class="inner-palate">
+        <div class="color-trigger"><i class="fa fa-cog"></i></div>
+        <div class="color-palate-head"><h5>GET AN AWESOME START!</h5></div>
+        <div class="various-color clearfix">
+            <div class="colors-list">
+                <h6>Choose Your Color</h6>
+                <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
+                <span class="palate tealblue-color" data-theme-file="css/color-themes/tealblue.css"></span>
+                <span class="palate scarlet-color" data-theme-file="css/color-themes/scarlet.css"></span>
+                <span class="palate kellygreen-color" data-theme-file="css/color-themes/kellygreen.css"></span>
+                <span class="palate dodgerblue-color" data-theme-file="css/color-themes/dodgerblue.css"></span>
+                <span class="palate red-color" data-theme-file="css/color-themes/red.css"></span>
+                <span class="palate selectiveyellow-color" data-theme-file="css/color-themes/selectiveyellow.css"></span>
+                <span class="palate maroon-color" data-theme-file="css/color-themes/maroon.css"></span>
+                <span class="palate brown-color" data-theme-file="css/color-themes/brown.css"></span>
+                <span class="palate green-color" data-theme-file="css/color-themes/green.css"></span>
+                <span class="palate duchessblue-color" data-theme-file="css/color-themes/duchessblue.css"></span>
+                <span class="palate lightblue-color" data-theme-file="css/color-themes/lightblue.css"></span>
+                <span class="palate frenchgray-color" data-theme-file="css/color-themes/frenchgray.css"></span>
+                <span class="palate telemagenta-color" data-theme-file="css/color-themes/telemagenta.css"></span>
+                <span class="palate signalviolet-color" data-theme-file="css/color-themes/signalviolet.css"></span>
+            </div>
+        </div>
+        <div class="lower-options">
+            <h6>RTL Supported</h6>
+            <ul class="rtl-version option-box"> <li class="active">LTR</li> <li class="rtl">RTL</li> </ul>
+            <h6>Box &amp; Wide layout</h6>
+            <ul class="box-version option-box"> <li class="active">Wide</li> <li class="box">Boxed</li> </ul>
+            <div class="box-mode-bg">
+                <h6>Boxed Mode Backgrounds</h6>
+                <ul class="clearfix">
+                    <li class="active" style="background-image: url(/fe/images/background/boxed-bg/1.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/2.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/3.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/4.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/5.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/6.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/7.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/8.png);"></li>
+                </ul>
+            </div>
+            <div class="palate-foo">
+                <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
+            </div>
+            <a href="https://themeforest.net/item/medicoz-clinic-hospital-html-template/28397578?ref=bold_touch" class="purchase-btn">Purchase now $12</a>
+        </div>
+    </div>
+</div><!-- End Color Switcher -->
+
+<div th:replace="Fragment/script :: script"></div>
+</body>
+
+<!-- Mirrored from skyethemes.com/html/2022/medicoz/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jun 2024 09:38:14 GMT -->
+</html>
+
+

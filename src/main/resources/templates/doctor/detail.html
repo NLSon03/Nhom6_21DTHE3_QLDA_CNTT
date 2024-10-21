@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/head :: head"></head>
+
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader"></div>
+
+  <!-- Main Header-->
+  <header th:replace="Fragment/header1 :: header1"></header>
+  <!--End Main Header -->
+
+  <!--Page Title-->
+  <section class="page-title" style="background-image: url(/fe/images/background/8.jpg);">
+    <div class="auto-container">
+      <div class="title-outer">
+        <h1>Chi Tiết Đặt Lịch</h1>
+        <ul class="page-breadcrumb">
+          <li><a href="http://localhost:8080">Trang Chủ</a></li>
+          <li>Bác Sĩ </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--End Page Title-->
+
+  <!-- Doctor Detail Section -->
+  <section class="doctor-detail-section">
+    <div class="auto-container">
+      <div class="row">
+        <!-- Content Side -->
+        <div class="content-side col-lg-8 col-md-12 col-sm-12 order-2">
+          <div class="docter-detail">
+            <h3 class="name" th:text="${doctor.name}">Dr. Morila Wood</h3>
+            <span class="designation" th:text="${doctor.khoa.name}"></span>
+            <div class="text" th:text="${doctor.introduction}">After graduating from West Virginia University Medical School, Dr. Emily Haden completed a two-year fellowship in sports medicine at Akron Children’s Hospital. During his training at Akron, Dr. Emily Haden Alex was team physician for the University of Akron and Walsh University.</div>
+            <ul class="doctor-info-list">
+              <li>
+                <strong>Chuyên Môn</strong>
+                <p th:text="${doctor.speciality}"><br>Paediatric Medicine <br>Urology</p>
+              </li>
+              <li>
+                <strong >Trình độ</strong>
+                <p th:text="${doctor.education}">Doctor of Medicine, University of Texas, USA (1990) Medical Orientation Program, St. Louis University (St. Louis, Missouri 1996)</p>
+              </li>
+              <li>
+                <strong >Kinh Nghiệm</strong>
+                <p th:text="${doctor.experience}">25 years of Experience in Medicine <br> Vice President and Chief Medical Officer, Kessler Institute for Rehabilitation <br>Medical Corporation Professor, Institute Of Coast Private Hospital Campus</p>
+              </li>
+              <li>
+                <strong >Địa Chỉ</strong>
+                <p th:text="${doctor.address}">Suite 27, Medical Centre, The Sunshine Coast Private Hospital, QLD 4556</p>
+              </li>
+              <li>
+
+              <li>
+                <strong >Phone</strong>
+                <p><a href="#" th:text="${doctor.phone}">+1-23-345-6789</a></p>
+              </li>
+              <li>
+                <strong>Email</strong>
+                <p><a href="#" th:text="${doctor.email}">myemail@yourdomain.com</a></p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="appointment-form default-form">
+            <div class="sec-title">
+              <span class="sub-title">Cuộc hẹn trực tuyến</span>
+              <h2>
+                Đặt một cuộc hẹn</h2>
+              <span class="divider"></span>
+            </div>
+
+            <!--Comment Form-->
+            <form th:object="${appointment}" method="post" th:action="@{/doctors/detail}">
+              <div class="row">
+                <input type="hidden" th:field="*{doctor.id}" th:value="${doctor.id}" />
+                <div class="form-group col-lg-6 col-md-12">
+                  <label for="patientName"> Tên Khách Hàng:</label>
+                  <input type="text" id="patientName" th:field="*{name}" required/>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                  <label for="patientName">Email</label>
+                  <input type="text" id="email" th:field="*{email}" required/>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                  <label for="patientName">Nội dung cần điều trị/ triệu chứng:</label>
+                  <input type="text" id="Content" th:field="*{content}" required/>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                  <button class="theme-btn btn-style-one" type="submit" name="submit-form"><span class="btn-title">Đặt Lịch</span></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Sidebar Side -->
+        <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+          <div class="sidebar">
+            <!-- Team Block -->
+            <div class="team-block wow fadeInUp">
+              <div class="inner-box">
+                <figure class="image"><img th:src="@{${doctor.image}}"  alt=""></figure>
+                <ul class="social-links">
+                  <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+                  <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+                  <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                  <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Doctor Availability -->
+            <div class="docter-availability">
+              <div class="inner">
+                <div class="sec-title">
+                  <span class="sub-title">Timining</span>
+                  <h2>Thời Gian Rảnh</h2>
+                  <span class="divider"></span>
+                </div>
+                <ul >
+                  <li th:each="timming : ${doctor.timmings}">
+                    <span th:text="${timming.day}">Day</span>: <span th:text="${timming.hours}">Hours</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Doctor Detail Section -->
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="auto-container">
+      <div class="row">
+        <!-- Team Block -->
+        <div class="team-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
+          <div class="inner-box">
+            <figure class="image"><img src="images/resource/team-1.jpg" alt=""></figure>
+            <ul class="social-links">
+              <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+              <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+              <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+              <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+            </ul>
+            <div class="info-box">
+              <h4 class="name"><a href="doctor-detail.html">Dr. Morila Wood</a></h4>
+              <span class="designation">Senior Dr. at Delmont</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Block -->
+        <div class="team-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
+          <div class="inner-box">
+            <figure class="image"><img src="images/resource/team-2.jpg" alt=""></figure>
+            <ul class="social-links">
+              <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+              <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+              <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+              <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+            </ul>
+            <div class="info-box">
+              <h4 class="name"><a href="doctor-detail.html">Dr. Morila Wood</a></h4>
+              <span class="designation">Senior Dr. at Delmont</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Block -->
+        <div class="team-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
+          <div class="inner-box">
+            <figure class="image"><img src="images/resource/team-3.jpg" alt=""></figure>
+            <ul class="social-links">
+              <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+              <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+              <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+              <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+            </ul>
+            <div class="info-box">
+              <h4 class="name"><a href="doctor-detail.html">Dr. Morila Wood</a></h4>
+              <span class="designation">Senior Dr. at Delmont</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Block -->
+        <div class="team-block col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
+          <div class="inner-box">
+            <figure class="image"><img src="images/resource/team-4.jpg" alt=""></figure>
+            <ul class="social-links">
+              <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+              <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+              <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+              <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+            </ul>
+            <div class="info-box">
+              <h4 class="name"><a href="doctor-detail.html">Dr. Morila Wood</a></h4>
+              <span class="designation">Senior Dr. at Delmont</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Team Section -->
+
+  <!-- Clients Section -->
+  <section class="clients-section alternate">
+    <div class="auto-container">
+
+      <!-- Sponsors Outer -->
+      <div class="sponsors-outer">
+        <!--clients carousel-->
+        <ul class="clients-carousel owl-carousel owl-theme">
+          <li class="slide-item"> <a href="#"><img src="images/clients/1.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/2.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/3.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/4.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/5.png" alt=""></a> </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--End Clients Section -->
+
+  <!-- Main Footer -->
+  <footer th:replace="Fragment/footer :: footer"></footer>
+  <!--End Main Footer -->
+
+</div><!-- End Page Wrapper -->
+
+
+<!-- Color Palate / Color Switcher -->
+<div class="color-palate">
+  <div class="inner-palate">
+    <div class="color-trigger"><i class="fa fa-cog"></i></div>
+    <div class="color-palate-head"><h5>GET AN AWESOME START!</h5></div>
+    <div class="various-color clearfix">
+      <div class="colors-list">
+        <h6>Choose Your Color</h6>
+        <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
+        <span class="palate tealblue-color" data-theme-file="css/color-themes/tealblue.css"></span>
+        <span class="palate scarlet-color" data-theme-file="css/color-themes/scarlet.css"></span>
+        <span class="palate kellygreen-color" data-theme-file="css/color-themes/kellygreen.css"></span>
+        <span class="palate dodgerblue-color" data-theme-file="css/color-themes/dodgerblue.css"></span>
+        <span class="palate red-color" data-theme-file="css/color-themes/red.css"></span>
+        <span class="palate selectiveyellow-color" data-theme-file="css/color-themes/selectiveyellow.css"></span>
+        <span class="palate maroon-color" data-theme-file="css/color-themes/maroon.css"></span>
+        <span class="palate brown-color" data-theme-file="css/color-themes/brown.css"></span>
+        <span class="palate green-color" data-theme-file="css/color-themes/green.css"></span>
+        <span class="palate duchessblue-color" data-theme-file="css/color-themes/duchessblue.css"></span>
+        <span class="palate lightblue-color" data-theme-file="css/color-themes/lightblue.css"></span>
+        <span class="palate frenchgray-color" data-theme-file="css/color-themes/frenchgray.css"></span>
+        <span class="palate telemagenta-color" data-theme-file="css/color-themes/telemagenta.css"></span>
+        <span class="palate signalviolet-color" data-theme-file="css/color-themes/signalviolet.css"></span>
+      </div>
+    </div>
+    <div class="lower-options">
+      <h6>RTL Supported</h6>
+      <ul class="rtl-version option-box"> <li class="active">LTR</li> <li class="rtl">RTL</li> </ul>
+      <h6>Box &amp; Wide layout</h6>
+      <ul class="box-version option-box"> <li class="active">Wide</li> <li class="box">Boxed</li> </ul>
+      <div class="box-mode-bg">
+        <h6>Boxed Mode Backgrounds</h6>
+        <ul class="clearfix">
+          <li class="active" style="background-image: url(/fe/images/background/boxed-bg/1.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/2.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/3.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/4.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/5.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/6.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/7.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/8.png);"></li>
+        </ul>
+      </div>
+      <div class="palate-foo">
+        <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
+      </div>
+      <a href="https://themeforest.net/item/medicoz-clinic-hospital-html-template/28397578?ref=bold_touch" class="purchase-btn">Purchase now $12</a>
+    </div>
+  </div>
+</div><!-- End Color Switcher -->
+
+<div th:replace="Fragment/script :: script"></div>
+</body>
+
+</html>
+
+
