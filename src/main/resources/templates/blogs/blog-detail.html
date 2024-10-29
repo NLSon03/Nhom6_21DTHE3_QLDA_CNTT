@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+>
+
+<head th:replace="Fragment/head :: head"></head>
+
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader"></div>
+
+  <!-- Main Header-->
+  <header th:replace="Fragment/header1 :: header1"></header>
+  <!--End Main Header -->
+
+  <!--Page Title-->
+  <section class="page-title" style="background-image: url(/fe/images/background/8.jpg);">
+    <div class="auto-container">
+      <div class="title-outer">
+        <h1>Blog/Bình Luận</h1>
+        <ul class="page-breadcrumb">
+          <li><a href="http://localhost:8080">Trang Chủ</a></li>
+          <li>Blog</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--End Page Title-->
+
+  <!-- Sidebar Page Container -->
+  <div class="sidebar-page-container">
+    <div class="auto-container">
+      <div class="row clearfix">
+        <!--Content Side-->
+        <div class="content-side col-lg-8 col-md-12 col-sm-12">
+          <div class="blog-post">
+            <!-- News Block -->
+            <div class="news-block">
+              <div class="inner-box">
+                <div class="image"><img th:src="@{'/' + ${blog.img}}" alt="" style="width: 770px;height: 370px" ></div>
+                <div class="lower-content">
+                  <ul class="post-info">
+                    <li><span class="far fa-user"></span> Admin</li>
+                    <li><span class="far fa-comments"></span> Comments</li>
+                    <li><span class="far fa-calendar" th:text="${blog.dateBegin}"></span></li>
+                  </ul>
+                  <h3 th:text="${blog.title}"></h3>
+                  <blockquote th:text="${blog.detail}"></blockquote>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Other Options -->
+            <div class="post-share-options clearfix">
+
+              <ul class="social-icon pull-right">
+                <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+                <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                <li><a href="#"><span class="fab fa-whatsapp"></span></a></li>
+                <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                <li><a href="#"><span class="fab fa-dribbble"></span></a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <!-- Author Box -->
+          <div class="author-box">
+            <div class="inner-box clearfix">
+              <div class="thumb"><img th:src="@{/fe/images/Author.jpg}" alt=""></div>
+              <span class="title">Tác Giả</span>
+              <h4 class="name">Phạm Huỳnh Ngọc Hiếu</h4>
+              <div class="text">Năng động đổi mới nguồn lực và san bằng dịch vụ khách hàng trong các tình huống dịch vụ khách hàng hiện đại xảy ra.</div>
+              <ul class="social-icon-one">
+                <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+                <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                <li><a href="#"><span class="fab fa-whatsapp"></span></a></li>
+                <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                <li><a href="#"><span class="fab fa-dribbble"></span></a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Related News -->
+          <div class="related-news">
+            <div class="group-title"><h3>Tin tức liên quan</h3></div>
+            <div class="row">
+              <!-- News Block -->
+              <div class="news-block col-lg-6 col-md-6 col-sm-12 wow fadeInUp" th:each="blogItem : ${blogs}">
+                <div class="inner-box">
+                  <div class="image-box">
+                    <figure class="image"><a th:href="@{'/blogs/detail/' + ${blogItem.id}}"><img th:src="@{'/' + ${blogItem.img}}" alt="" style="width: 370px;height: 270px"></a></figure>
+                    <a href="#" class="date">Sep 19, 2020</a>
+                  </div>
+                  <div class="lower-content">
+                    <h4><a th:href="@{'/blogs/detail/' + ${blogItem.id}}"  th:text="${blogItem.title}"></a></h4>
+                    <div class="text" th:text="${blogItem.detail}"></div>
+                    <div class="post-info">
+                      <div class="post-author">By Admin</div>
+                      <ul class="post-option">
+                        <li><a href="#">0 <i class="far fa-heart"></i></a></li>
+                        <li><a href="#">0 <i class="far fa-comments"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Comments Area -->
+          <div class="comments-area">
+            <div class="group-title">
+              <h3 th:text="${commentCount} + ' Bình luận'"></h3>
+            </div>
+            <div class="comment-box" th:each="comment : ${comments}">
+              <div class="comment">
+                <div class="author-thumb"><img th:src="@{/fe/images/resource/avartar.jpg}" alt=""></div>
+                <div class="comment-info">
+                  <div class="name" th:text="${comment.author}"></div>
+                  <div class="date" th:text="${#dates.format(comment.date, 'MMM dd, yyyy')}"></div>
+                </div>
+                <div class="text" th:text="${comment.content}"></div>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                  <form th:action="@{'/blogs/detail/toggleComment/' + ${comment.id}}" method="post">
+                    <button type="submit" class="btn btn-danger" th:text="${comment.hide} ? 'Show' : 'Ẩn'">Toggle</button>
+                  </form>
+                </div>
+                <a href="#" class="reply-btn">Reply</a>
+              </div>
+            </div>
+          </div>
+
+          <!--Comment Form-->
+          <div class="comment-form">
+            <div class="group-title">
+              <h3>Hãy Để lại một bình luận</h3>
+            </div>
+            <form th:action="@{'/blogs/detail/' + ${blog.id} + '/addComment'}" method="post">
+              <div class="row clearfix">
+                <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                  <input type="text" id="author" name="author" placeholder="Tên" required="">
+                </div>
+                <!--                <div class="col-lg-6 col-md-12 col-sm-12 form-group">-->
+                <!--                  <input type="email" name="email" placeholder="Email" required="">-->
+                <!--                </div>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <textarea id="content" name="content" placeholder="Bình Luận Của Bạn"></textarea>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <button class="theme-btn btn-style-one" type="submit" name="submit-form"><span class="btn-title">Đăng Bài</span></button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+        <!--Sidebar Side-->
+        <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+          <aside class="sidebar">
+            <!--search box-->
+            <div class="sidebar-widget search-box">
+              <form method="post" action="https://skyethemes.com/html/2022/medicoz/blog.html">
+                <div class="form-group">
+                  <input type="search" name="search-field" value="" placeholder="Tìm Kiếm....." required="">
+                  <button type="submit"><span class="icon fa fa-search"></span></button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-widget category-list">
+              <div class="sidebar-title"><h3>Danh Mục</h3></div>
+              <ul class="cat-list">
+                <li><a href="#">Procedures <span>(06)</span></a></li>
+                <li><a href="#">Transplantation <span>(02)</span></a></li>
+                <li class="active"><a href="#">Management <span>(05)</span></a></li>
+                <li><a href="#">Healthcare Tips <span>(25)</span></a></li>
+                <li><a href="#">Uncategorized <span>(04)</span></a></li>
+              </ul>
+            </div>
+
+            <!-- Latest News -->
+            <div class="sidebar-widget latest-news">
+              <div class="sidebar-title"><h3>Bài viết phổ biến</h3></div>
+              <div class="widget-content" th:each="Item : ${blogs3}">
+                <article class="post">
+                  <div class="post-thumb"><a th:href="@{'/blogs/detail/' + ${Item.id}}"><img th:src="@{'/' + ${Item.img}}" alt=""></a></div>
+                  <h5><a th:href="@{'/blogs/detail/' + ${Item.id}}" th:text="${Item.title}"></a></h5>
+                  <div class="post-info" th:text="${#dates.format(Item.dateBegin, 'MMM dd, yyyy')}"></div>
+                </article>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Sidebar Container -->
+
+  <!-- Clients Section -->
+  <section class="clients-section alternate">
+    <div class="auto-container">
+
+      <!-- Sponsors Outer -->
+      <div class="sponsors-outer">
+        <!--clients carousel-->
+        <ul class="clients-carousel owl-carousel owl-theme">
+          <li class="slide-item"> <a href="#"><img src="images/clients/1.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/2.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/3.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/4.png" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img src="images/clients/5.png" alt=""></a> </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--End Clients Section -->
+
+  <!-- Main Footer -->
+  <footer th:replace="Fragment/footer :: footer"></footer>
+  <!--End Main Footer -->
+
+</div><!-- End Page Wrapper -->
+
+
+<!-- Color Palate / Color Switcher -->
+<div class="color-palate">
+  <div class="inner-palate">
+    <div class="color-trigger"><i class="fa fa-cog"></i></div>
+    <div class="color-palate-head"><h5>GET AN AWESOME START!</h5></div>
+    <div class="various-color clearfix">
+      <div class="colors-list">
+        <h6>Choose Your Color</h6>
+        <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
+        <span class="palate tealblue-color" data-theme-file="css/color-themes/tealblue.css"></span>
+        <span class="palate scarlet-color" data-theme-file="css/color-themes/scarlet.css"></span>
+        <span class="palate kellygreen-color" data-theme-file="css/color-themes/kellygreen.css"></span>
+        <span class="palate dodgerblue-color" data-theme-file="css/color-themes/dodgerblue.css"></span>
+        <span class="palate red-color" data-theme-file="css/color-themes/red.css"></span>
+        <span class="palate selectiveyellow-color" data-theme-file="css/color-themes/selectiveyellow.css"></span>
+        <span class="palate maroon-color" data-theme-file="css/color-themes/maroon.css"></span>
+        <span class="palate brown-color" data-theme-file="css/color-themes/brown.css"></span>
+        <span class="palate green-color" data-theme-file="css/color-themes/green.css"></span>
+        <span class="palate duchessblue-color" data-theme-file="css/color-themes/duchessblue.css"></span>
+        <span class="palate lightblue-color" data-theme-file="css/color-themes/lightblue.css"></span>
+        <span class="palate frenchgray-color" data-theme-file="css/color-themes/frenchgray.css"></span>
+        <span class="palate telemagenta-color" data-theme-file="css/color-themes/telemagenta.css"></span>
+        <span class="palate signalviolet-color" data-theme-file="css/color-themes/signalviolet.css"></span>
+      </div>
+    </div>
+    <div class="lower-options">
+      <h6>RTL Supported</h6>
+      <ul class="rtl-version option-box"> <li class="active">LTR</li> <li class="rtl">RTL</li> </ul>
+      <h6>Box &amp; Wide layout</h6>
+      <ul class="box-version option-box"> <li class="active">Wide</li> <li class="box">Boxed</li> </ul>
+      <div class="box-mode-bg">
+        <h6>Boxed Mode Backgrounds</h6>
+        <ul class="clearfix">
+          <li class="active" style="background-image: url(/fe/images/background/boxed-bg/1.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/2.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/3.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/4.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/5.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/6.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/7.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/8.png);"></li>
+        </ul>
+      </div>
+      <div class="palate-foo">
+        <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
+      </div>
+      <a href="https://themeforest.net/item/medicoz-clinic-hospital-html-template/28397578?ref=bold_touch" class="purchase-btn">Purchase now $12</a>
+    </div>
+  </div>
+</div><!-- End Color Switcher -->
+
+<div th:replace="Fragment/script :: script"></div>
+</body>
+
+</html>
+
+
+

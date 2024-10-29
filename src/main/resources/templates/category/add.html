@@ -1,0 +1,82 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout1}">-->
+<!--<head>-->
+<!--    <title>Thêm Danh mục</title>-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Thêm Loại Thuốc Mới</h1>-->
+<!--<section layout:fragment="content" class="container mt-5">-->
+<!--    <h1 class="mb-4">Form Category</h1>-->
+<!--    <form th:action="@{/categories/add}" th:object="${category}" method="post">-->
+<!--        <div class="mb-3">-->
+<!--            <label for="name" class="form-label">Category Name:</label>-->
+<!--            <input type="text" id="name" th:field="*{ten}" class="form-control"/>-->
+<!--&lt;!&ndash;            <div class="text-danger" th:if="${#fields.hasErrors('name')}"&ndash;&gt;-->
+<!--&lt;!&ndash;                 th:errors="*{ten}"></div>&ndash;&gt;-->
+<!--        </div>-->
+
+<!--        <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--    </form>-->
+<!--</section>-->
+<!--<script-->
+<!--        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/headAdmin :: headAdmin"></head>
+<!--<body id="crancy-dark-light">-->
+<div class="crancy-body-area">
+    <!-- crancy Admin Menu -->
+    <div th:replace="Fragment/AdminMenu :: AdminMenu"></div>
+    <!-- End crancy Admin Menu -->
+
+    <!-- Start Header -->
+    <header th:replace="Fragment/AdminHeader :: AdminHeader"></header>
+    <!-- End Header -->
+
+    <!-- crancy Dashboard -->
+    <section class="crancy-adashboard crancy-show">
+        <div class="container container__bscreen">
+
+            <div class="row">
+                <div class="col-xxl-8 col-12 crancy-main__column">
+                    <div class="crancy-body">
+                        <!-- Dashboard Inner -->
+                        <h1>Thêm Loại Thuốc</h1>
+                        <form th:action="@{/categories/add}" th:object="${category}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Category Name:</label>
+                                <input type="text"  th:field="*{ten}" class="form-control"/>
+                                <!--            <div class="text-danger" th:if="${#fields.hasErrors('name')}"-->
+                                <!--                 th:errors="*{ten}"></div>-->
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        <!-- End Dashboard Inner -->
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-12 crancy-main__sidebar">
+                    <!-- Crancy Sidebar -->
+
+                    <!-- End Crancy Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End crancy Dashboard -->
+</div>
+
+<div th:replace="Fragment/scriptAdmin :: scriptAdmin"></div>
+</body>
+
+</html>

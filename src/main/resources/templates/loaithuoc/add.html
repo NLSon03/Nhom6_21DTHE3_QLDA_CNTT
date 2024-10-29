@@ -1,0 +1,89 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Thêm Loại Thuốc</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Thêm Loại Thuốc Mới</h1>-->
+<!--<form  th:action="@{/loaithuocs/add}" th:object="${loaithuoc}" method="post">-->
+<!--    <div>-->
+<!--        <label for="tenLoai">Tên Loại:</label>-->
+<!--        <input type="text" id="tenLoai" th:field="*{tenLoai}" />-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="ghiChu">Ghi Chú:</label>-->
+<!--        <input type="text" id="ghiChu" th:field="*{ghiChu}" />-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button type="submit">Lưu</button>-->
+<!--    </div>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/headAdmin :: headAdmin"></head>
+<body id="crancy-dark-light">
+<div class="crancy-body-area">
+    <!-- crancy Admin Menu -->
+    <div th:replace="Fragment/AdminMenu :: AdminMenu"></div>
+    <!-- End crancy Admin Menu -->
+
+    <!-- Start Header -->
+    <header th:replace="Fragment/AdminHeader :: AdminHeader"></header>
+    <!-- End Header -->
+
+    <!-- crancy Dashboard -->
+    <section class="crancy-adashboard crancy-show">
+        <div class="container container__bscreen">
+
+            <div class="row">
+                <div class="col-xxl-8 col-12 crancy-main__column">
+                    <div class="crancy-body">
+                        <!-- Dashboard Inner -->
+                        <h1>Thêm Loại Thuốc</h1>
+                        <!-- <form th:action="@{/products/add}" th:object="${product}" method="post"
+                        class="needs-validation" novalidate>-->
+                        <form  th:action="@{/loaithuocs/add}" th:object="${loaithuoc}" method="post">
+                            <div>
+                                <label for="tenLoai">Tên Loại:</label>
+                                <input type="text" id="tenLoai" th:field="*{tenLoai}" />
+                            </div>
+                            <div>
+                                <label for="ghiChu">Ghi Chú:</label>
+                                <input type="text" id="ghiChu" th:field="*{ghiChu}" />
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label  for="loai">Nhà Sản Xuất:</label>
+                                <select id="loai" name="nhaSanXuat" th:field="*{category}" >
+                                    <option value="" th:text="'Select Nhà Sản Xuất'"></option>
+                                    <option th:each="nsx : ${category}" th:value="${nsx.id}" th:text="${nsx.ten}"></option>
+                                </select>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" type="submit">Lưu</button>
+                            </div>
+                            <a class="btn btn-warning" th:href="@{/loaithuocs}">Quay lại</a>
+                        </form>
+
+                        <!-- End Dashboard Inner -->
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-12 crancy-main__sidebar">
+                    <!-- Crancy Sidebar -->
+
+                    <!-- End Crancy Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End crancy Dashboard -->
+</div>
+
+<div th:replace="Fragment/scriptAdmin :: scriptAdmin"></div>
+</body>
+
+</html>

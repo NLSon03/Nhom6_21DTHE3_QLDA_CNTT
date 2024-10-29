@@ -1,0 +1,223 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Thêm Thuốc</title>-->
+<!--    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Thêm Thuốc</h1>-->
+<!--<form th:action="@{/thuocs/add}" th:object="${thuoc}" method="post" enctype="multipart/form-data">-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="i">Tên Thuốc:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{tenthuoc}" id="i">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="b">Nguồn Gốc:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{nguongoc}" id="b">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="f">Công Dụng:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{congdung}" id="f">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="Tenthuoc">Số Lượng:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{soluong}" id="Tenthuoc">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="Giaban">Giá Bán:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{giaban}" id="Giaban">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="Baoquan">Bảo Quản:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{baoquan}" id="Baoquan">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="Cachdung">Cách Dùng:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{cachdung}" id="Cachdung">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="e">Hạn Sử Dụng:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{hansudung}" id="e">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="a">Chú Ý:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{chuY}" id="a">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="l">Thành Phần:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{thanhPhan}" id="l">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="h">Phản Tác Dụng:</label>-->
+<!--        <input class="form-control" type="text" th:field="*{phantacdung}" id="h">-->
+<!--    </div>-->
+<!--    <div class="col-6 mb-3">-->
+<!--        <label class="form-label" for="loaithuoc">Loại Thuốc:</label><span class="text-danger">*</span>-->
+<!--        <select class="form-control" id="loaithuoc" th:field="*{loaithuoc.id}">-->
+<!--            <option value="">&#45;&#45; Select Category &#45;&#45;</option>-->
+<!--            <option th:each="loaithuoc : ${loaithuocs}"-->
+<!--                    th:value="${loaithuoc.id}"-->
+<!--                    th:text="${loaithuoc.tenLoai}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="nhasanxuat">Nhà Sản Xuất:</label>-->
+<!--        <select id="nhasanxuat" name="nhaSanXuat" th:field="*{nhaSanXuat}">-->
+<!--            <option value="" th:text="'Select Nhà Sản Xuất'"></option>-->
+<!--            <option th:each="nsx : ${nhasanxuats}" th:value="${nsx.id}" th:text="${nsx.tenNSX}"></option>-->
+<!--        </select>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="cc">Đơn Vị Tính:</label>-->
+<!--        <select id="cc" name="cc" th:field="*{donViTinh}">-->
+<!--            <option value="" th:text="'Select Đơn Vị Tính'"></option>-->
+<!--            <option th:each="DVT : ${donvitinhs}" th:value="${DVT.maDVT}" th:text="${DVT.tenDVT}"></option>-->
+<!--        </select>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="cc">Loại Danh Mục:</label>-->
+<!--        <select id="db" name="cc" th:field="*{category}">-->
+<!--            <option value="" th:text="'Select Loại Danh Mục'"></option>-->
+<!--            <option th:each="cte : ${categories}" th:value="${cte.id}" th:text="${cte.ten}"></option>-->
+<!--        </select>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="imageFile">Hình Ảnh:</label>-->
+<!--        <input type="file" id="imageFile" name="imageFile">-->
+<!--    </div>-->
+<!--    <input type="submit" class="btn btn-primary" value="Save">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/headAdmin :: headAdmin"></head>
+<body id="crancy-dark-light">
+<div class="crancy-body-area">
+    <!-- crancy Admin Menu -->
+    <div th:replace="Fragment/AdminMenu :: AdminMenu"></div>
+    <!-- End crancy Admin Menu -->
+
+    <!-- Start Header -->
+    <header th:replace="Fragment/AdminHeader :: AdminHeader"></header>
+    <!-- End Header -->
+
+    <!-- crancy Dashboard -->
+    <section class="crancy-adashboard crancy-show">
+        <div class="container container__bscreen">
+
+            <div class="row">
+                <div class="col-xxl-8 col-12 crancy-main__column">
+                    <div class="crancy-body">
+                        <!-- Dashboard Inner -->
+                        <h1>Thêm Thuốc</h1>
+                        <!-- <form th:action="@{/products/add}" th:object="${product}" method="post"
+                        class="needs-validation" novalidate>-->
+                        <form th:action="@{/thuocs/add}" th:object="${thuoc}" method="post" enctype="multipart/form-data">
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="i">Tên Thuốc:</label>
+                                <input class="form-control" type="text" th:field="*{tenthuoc}" id="i">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="b">Nguồn Gốc:</label>
+                                <input class="form-control" type="text" th:field="*{nguongoc}" id="b">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="f">Công Dụng:</label>
+                                <input class="form-control" type="text" th:field="*{congdung}" id="f">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="Tenthuoc">Số Lượng:</label>
+                                <input class="form-control" type="text" th:field="*{soluong}" id="Tenthuoc">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="Giaban">Giá Bán:</label>
+                                <input class="form-control" type="text" th:field="*{giaban}" id="Giaban">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="Baoquan">Bảo Quản:</label>
+                                <input class="form-control" type="text" th:field="*{baoquan}" id="Baoquan">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="Cachdung">Cách Dùng:</label>
+                                <input class="form-control" type="text" th:field="*{cachdung}" id="Cachdung">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="e">Hạn Sử Dụng:</label>
+                                <input class="form-control" type="text" th:field="*{hansudung}" id="e">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="a">Chú Ý:</label>
+                                <input class="form-control" type="text" th:field="*{chuY}" id="a">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="l">Thành Phần:</label>
+                                <input class="form-control" type="text" th:field="*{thanhPhan}" id="l">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="h">Phản Tác Dụng:</label>
+                                <input class="form-control" type="text" th:field="*{phantacdung}" id="h">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="loaithuoc">Loại Thuốc:</label><span class="text-danger">*</span>
+                                <select class="form-control" id="loaithuoc" th:field="*{loaithuoc.id}">
+                                    <option value="">-- Select Category --</option>
+                                    <option th:each="loaithuoc : ${loaithuocs}"
+                                            th:value="${loaithuoc.id}"
+                                            th:text="${loaithuoc.tenLoai}">
+                                    </option>
+                                </select>
+                            </div>
+                            <br><br>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="nhasanxuat">Nhà Sản Xuất:</label>
+                                <select class="form-control" id="nhasanxuat" name="nhaSanXuat" th:field="*{nhaSanXuat}" >
+                                    <option value="" th:text="'Select Nhà Sản Xuất'"></option>
+                                    <option th:each="nsx : ${nhasanxuats}" th:value="${nsx.id}" th:text="${nsx.tenNSX}"></option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="cc">Đơn Vị Tính:</label>
+                                <select class="form-control" id="cc" name="cc" th:field="*{donViTinh}">
+                                    <option value="" th:text="'Select Đơn Vị Tính'"></option>
+                                    <option th:each="DVT : ${donvitinhs}" th:value="${DVT.maDVT}" th:text="${DVT.tenDVT}"></option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="cc">Loại Danh Mục:</label>
+                                <select class="form-control" id="db" name="cc" th:field="*{category}">
+                                    <option value="" th:text="'Select Loại Danh Mục'"></option>
+                                    <option th:each="cte : ${categories}" th:value="${cte.id}" th:text="${cte.ten}"></option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label" for="imageFile">Hình Ảnh:</label>
+                                <input type="file" id="imageFile" name="imageFile">
+                            </div>
+                            <button type="submit" class="btn btn-primary" value="Save">Thêm</button>
+                            <a th:href="@{/thuocs}" class="btn btn-warning">Quay lại</a>
+                        </form>
+
+                        <!-- End Dashboard Inner -->
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-12 crancy-main__sidebar">
+                    <!-- Crancy Sidebar -->
+
+                    <!-- End Crancy Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End crancy Dashboard -->
+</div>
+
+<div th:replace="Fragment/scriptAdmin :: scriptAdmin"></div>
+</body>
+
+</html>
+

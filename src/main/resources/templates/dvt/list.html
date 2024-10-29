@@ -1,0 +1,221 @@
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Danh sách Đơn Vị Tính</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Danh sách Đơn Vị Tính</h1>-->
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>ID</th>-->
+<!--        <th>Tên Đơn Vị Tính</th>-->
+<!--        <th>Hành Động</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="dvt : ${dvts}">-->
+<!--        <td th:text="${dvt.maDVT}">ID</td> &lt;!&ndash; Sửa thành maDVT &ndash;&gt;-->
+<!--        <td th:text="${dvt.tenDVT}">Tên dvt</td> &lt;!&ndash; Sửa thành tenDVT &ndash;&gt;-->
+<!--        <td>-->
+<!--            <a th:href="@{/dvt/edit/{id}(id=${dvt.maDVT})}">Sửa</a> &lt;!&ndash; Sửa thành maDVT &ndash;&gt;-->
+<!--            <a th:href="@{/dvt/delete/{id}(id=${dvt.maDVT})}">Xóa</a> &lt;!&ndash; Sửa thành maDVT &ndash;&gt;-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--<a th:href="@{/dvt/add}">Thêm Đơn Vị Tính Mới</a> &lt;!&ndash; Sửa thành đơn vị tính &ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/headAdmin :: headAdmin">
+
+
+</head>
+<body id="crancy-dark-light">
+<div class="crancy-body-area">
+    <!-- crancy Admin Menu -->
+    <div th:replace="Fragment/AdminMenu :: AdminMenu"></div>
+    <!-- End crancy Admin Menu -->
+
+    <!-- Start Header -->
+    <header th:replace="Fragment/AdminHeader :: AdminHeader"></header>
+    <!-- End Header -->
+
+    <!-- crancy Dashboard -->
+    <section class="crancy-adashboard crancy-show">
+        <div class="container container__bscreen">
+
+            <div class="row">
+                <div class="col-xxl-8 col-12 crancy-main__column">
+                    <div class="crancy-body">
+                        <!-- Dashboard Inner -->
+                        <div class="crancy-dsinner">
+                            <div class="row crancy-gap-30">
+                                <div class="col-12">
+
+                                </div>
+                            </div>
+                            <h1>Danh Sách Đơn Vị Tính</h1>
+                            <div class="crancy-table crancy-table--v3 mg-top-30">
+                                <div class="crancy-customer-filter">
+                                    <div
+                                            class="crancy-customer-filter__single crancy-customer-filter__single--csearch"
+                                    >
+                                        <div
+                                                class="crancy-header__form crancy-header__form--customer"
+                                        >
+                                            <form class="crancy-header__form-inner" action="#">
+                                                <button class="search-btn" type="submit">
+                                                    <svg
+                                                            width="20"
+                                                            height="20"
+                                                            viewBox="0 0 20 20"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <circle
+                                                                cx="9.78639"
+                                                                cy="9.78614"
+                                                                r="8.23951"
+                                                                stroke="#9AA2B1"
+                                                                stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                        ></circle>
+                                                        <path
+                                                                d="M15.5176 15.9448L18.7479 19.1668"
+                                                                stroke="#9AA2B1"
+                                                                stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                                <input
+                                                        name="s"
+                                                        value=""
+                                                        type="text"
+                                                        placeholder="Search by ID, product, or others..."
+                                                />
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="crancy-customer-filter__single">
+                                        <a
+                                                href="#"
+                                                class="crancy-customer-filter__single--button"
+                                        >
+                                            <img th:src="@{/fe/admin/img/filter-icon3.svg}" />Filters
+                                        </a>
+                                    </div>
+                                    <div class="crancy-customer-filter__single">
+                                        <a
+                                                href="#"
+                                                class="crancy-customer-filter__single--button"
+                                        >
+                                            <img th:src="@{/fe/admin/img/calendar-icon-2.svg}" />April 11 - April
+                                            24
+                                        </a>
+                                    </div>
+                                    <div class="crancy-customer-filter__single">
+                                        <a
+                                                href="#"
+                                                class="crancy-customer-filter__single--button"
+                                        >
+                                            <img th:src="@{/fe/admin/img/download-icon2.svg}" />Download
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- crancy Table -->
+                                <table
+                                        id="crancy-table__main"
+                                        class="crancy-table__main crancy-table__main-v3"
+                                >
+                                    <!-- crancy Table Head -->
+                                    <thead class="crancy-table__head">
+                                    <tr>
+                                        <th class="crancy-table__column-1 crancy-table__h1">
+                                            <div class="crancy-wc__checkbox">
+                                                <span>ID</span>
+
+                                            </div>
+                                        </th>
+                                        <th class="crancy-table__column-2 crancy-table__h2">
+                                            Đơn Vị Tính
+                                        </th>
+                                        <th class="crancy-table__column-2 crancy-table__h2">
+                                            Hành động
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+                                    <!-- crancy Table Body -->
+                                    <tbody class="crancy-table__body" >
+                                    <tr th:each="dvt : ${dvts}">
+                                        <td
+                                                class="crancy-table__column-1 crancy-table__data-1"
+                                        >
+                                            <div class="crancy-table__customer">
+                                                <div class="crancy-wc__checkbox">
+                                                    <span th:text="${dvt.maDVT}"></span>
+<!--                                                    <label-->
+
+<!--                                                            class="crancy-table__customer-img"-->
+<!--                                                    >-->
+<!--                                                        <img th:src="@{${doctor.image}}" alt="#" />-->
+<!--                                                        <h4 class="crancy-table__product-title" th:text="${doctor.name}">-->
+
+<!--                                                        </h4>-->
+<!--                                                    </label>-->
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td
+                                                class="crancy-table__column-2 crancy-table__data-2"
+                                        >
+                                            <h4 class="crancy-table__product-title" th:text="${dvt.tenDVT}">
+
+                                            </h4>
+                                        </td>
+
+                                        <td class="crancy-table__column-5 crancy-table__data-5">
+                                            <div>
+                                                <a th:href="@{/dvts/edit/{id}(id=${dvt.maDVT})}"
+                                                   class="btn btn-success btn-sm">Sửa</a>
+                                                <a th:href="@{/dvts/delete/{id}(id=${dvt.maDVT})}"
+                                                   class="btn btn-danger btn-sm"
+                                                   onclick="return confirm('Bạn có chắc không?')">Xóa</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                    <!-- End crancy Table Body -->
+                                </table>
+                                <!-- End crancy Table -->
+                            </div>
+                        </div>
+                        <!-- End Dashboard Inner -->
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-12 crancy-main__sidebar">
+                    <!-- Crancy Sidebar -->
+
+                    <!-- End Crancy Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End crancy Dashboard -->
+</div>
+
+<div th:replace="Fragment/scriptAdmin :: scriptAdmin"></div>
+</body>
+
+</html>
