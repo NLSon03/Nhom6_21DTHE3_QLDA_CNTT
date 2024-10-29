@@ -1,7 +1,7 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.model.khoa;
-import com.NgocHieu.Buoi22.service.KhoaService;
+import com.qlda.nhom6.model.khoa;
+import com.qlda.nhom6.service.KhoaService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

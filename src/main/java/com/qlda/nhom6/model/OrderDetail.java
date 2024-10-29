@@ -1,10 +1,11 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
 @Setter
 @Getter
 @RequiredArgsConstructor

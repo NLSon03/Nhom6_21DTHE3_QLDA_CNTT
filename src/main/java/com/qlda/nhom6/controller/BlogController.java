@@ -1,9 +1,9 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.model.Blog;
-import com.NgocHieu.Buoi22.model.Comment;
-import com.NgocHieu.Buoi22.service.BlogService;
-import com.NgocHieu.Buoi22.service.CommentService;
+import com.qlda.nhom6.model.Blog;
+import com.qlda.nhom6.model.Comment;
+import com.qlda.nhom6.service.BlogService;
+import com.qlda.nhom6.service.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -31,6 +31,7 @@ public class BlogController {
     private BlogService blogService;
     @Autowired
     private CommentService commentService;
+
     @GetMapping
     public String showBlogList(@RequestParam(defaultValue = "1") int page,
                                @RequestParam(defaultValue = "10") int pageSize,
@@ -42,10 +43,11 @@ public class BlogController {
         model.addAttribute("totalPages", blogService.getTotalPages(pageSize));
         return "/blogs/blog-list";
     }
+
     @GetMapping("/blog-list-user")
     public String showUserBlogList(@RequestParam(defaultValue = "1") int page,
-                                    @RequestParam(defaultValue = "2") int pageSize,
-                                    Model model) {
+                                   @RequestParam(defaultValue = "2") int pageSize,
+                                   Model model) {
 
         List<Blog> blogs = blogService.getProductsByPage(page, pageSize);
         model.addAttribute("blogs", blogs);
@@ -72,6 +74,7 @@ public class BlogController {
         model.addAttribute("commentCount", commentCount);
         return "/blogs/blog-detail";
     }
+
     @PostMapping("/detail/{id}/addComment")
     public String addComment(@PathVariable int id, @RequestParam String author, @RequestParam String content) {
         Comment comment = new Comment();
@@ -83,6 +86,7 @@ public class BlogController {
         commentService.addComment(comment);
         return "redirect:/blogs/detail/" + id;
     }
+
     @PostMapping("/detail/toggleComment/{commentId}")
     public String toggleComment(@PathVariable int commentId) {
         Comment comment = commentService.getCommentById(commentId).orElseThrow(() -> new RuntimeException("Comment not found"));

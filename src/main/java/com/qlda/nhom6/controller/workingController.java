@@ -1,8 +1,8 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.model.Timming;
-import com.NgocHieu.Buoi22.service.DoctorService;
-import com.NgocHieu.Buoi22.service.TimingService;
+import com.qlda.nhom6.model.Timming;
+import com.qlda.nhom6.service.DoctorService;
+import com.qlda.nhom6.service.TimingService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

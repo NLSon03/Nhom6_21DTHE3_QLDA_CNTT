@@ -1,8 +1,7 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.sql.Date;
+import lombok.Data;
 
 @Data
 @Entity
@@ -25,9 +24,8 @@ public class Comment {
     @Column(name = "DATE", nullable = false)
     private java.sql.Date date;
 
-    @Column(name ="HIDE", nullable = false)
+    @Column(name = "HIDE", nullable = false)
     private boolean hide;
-
 
 
     // Phương thức để ẩn/hiện bình luận

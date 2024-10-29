@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.DonViTinh;
-import com.NgocHieu.Buoi22.repository.IDVTRepository;
+import com.qlda.nhom6.model.DonViTinh;
+import com.qlda.nhom6.repository.IDVTRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

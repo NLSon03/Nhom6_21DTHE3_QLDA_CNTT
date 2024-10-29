@@ -1,10 +1,10 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.Provider;
-import com.NgocHieu.Buoi22.Role;
-import com.NgocHieu.Buoi22.model.User;
-import com.NgocHieu.Buoi22.repository.IRoleRepository;
-import com.NgocHieu.Buoi22.repository.IUserRepository;
+import com.qlda.nhom6.Provider;
+import com.qlda.nhom6.Role;
+import com.qlda.nhom6.model.User;
+import com.qlda.nhom6.repository.IRoleRepository;
+import com.qlda.nhom6.repository.IUserRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

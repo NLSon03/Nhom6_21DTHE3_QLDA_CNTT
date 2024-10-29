@@ -1,17 +1,17 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
+
+
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+
 @Data
 @Entity
-@Table(name = "Slide")
-public class Slide {
+@Table(name = "Cart")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_SLIDE")
+    @Column(name = "ID_CART")
     private int id;
-    @Column(name = "TITLE", nullable = false)
-    private String title;
     @Column(name = "DATEBEGIN", nullable = false)
     private java.sql.Date dateBegin;
     @Column(name = "META")
@@ -22,5 +22,5 @@ public class Slide {
     private String link;
     @Column(name = "HIDE", nullable = false)
     private boolean hide;
-}
 
+}

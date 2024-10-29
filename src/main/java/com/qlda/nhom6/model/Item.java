@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

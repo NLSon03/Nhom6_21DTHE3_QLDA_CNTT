@@ -1,6 +1,6 @@
 package com.qlda.nhom6.repository;
 
-import com.NgocHieu.Buoi22.model.Thuoc;
+import com.qlda.nhom6.model.Thuoc;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

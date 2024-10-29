@@ -1,8 +1,8 @@
 package com.qlda.nhom6.controller;
 
 
-import com.NgocHieu.Buoi22.model.NhaSanXuat;
-import com.NgocHieu.Buoi22.service.NhaSanXuatService;
+import com.qlda.nhom6.model.NhaSanXuat;
+import com.qlda.nhom6.service.NhaSanXuatService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

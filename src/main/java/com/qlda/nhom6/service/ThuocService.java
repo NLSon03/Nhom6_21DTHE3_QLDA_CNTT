@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.Thuoc;
-import com.NgocHieu.Buoi22.repository.IThuocRepository;
+import com.qlda.nhom6.model.Thuoc;
+import com.qlda.nhom6.repository.IThuocRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,8 +21,8 @@ public class HoaDonXuat {
     private Long MaHDX;
 
 
-    @Column(name = "NgayLap",  nullable = false)
-    private Date NgayLap=new Date();
+    @Column(name = "NgayLap", nullable = false)
+    private final Date NgayLap = new Date();
     @Column(name = "TongTienThuoc")
     private double TongTienThuoc;
     @Column(name = "TongThue")
@@ -35,7 +35,7 @@ public class HoaDonXuat {
     @ToString.Exclude
     private User user;
 
-@OneToMany(mappedBy = "hoadonxuat",cascade = CascadeType.ALL)
-@ToString.Exclude
-    private List<ChiTietHoaDonXuat> detailivoid = new ArrayList<>();
+    @OneToMany(mappedBy = "hoadonxuat", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private final List<ChiTietHoaDonXuat> detailivoid = new ArrayList<>();
 }   

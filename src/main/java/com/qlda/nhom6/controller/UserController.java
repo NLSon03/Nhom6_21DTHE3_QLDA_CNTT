@@ -1,7 +1,7 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.model.User;
-import com.NgocHieu.Buoi22.service.UserService;
+import com.qlda.nhom6.model.User;
+import com.qlda.nhom6.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

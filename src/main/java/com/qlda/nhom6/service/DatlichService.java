@@ -1,9 +1,9 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.Datlich;
-import com.NgocHieu.Buoi22.model.Doctor;
-import com.NgocHieu.Buoi22.repository.IDatlichRepository;
-import com.NgocHieu.Buoi22.repository.ITimingRepository;
+import com.qlda.nhom6.model.Datlich;
+import com.qlda.nhom6.model.Doctor;
+import com.qlda.nhom6.repository.IDatlichRepository;
+import com.qlda.nhom6.repository.ITimingRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

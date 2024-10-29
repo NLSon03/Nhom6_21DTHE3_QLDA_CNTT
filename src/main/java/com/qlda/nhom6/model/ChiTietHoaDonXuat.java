@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,13 +11,12 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "Chitiethoadonxuat")
-public class ChiTietHoaDonXuat
-{
+public class ChiTietHoaDonXuat {
     @Id
-    private Long  MaCTHDX;
+    private Long MaCTHDX;
 
     @Column(name = "Soluong")
-    private int  Soluong;
+    private int Soluong;
 
     @Column(name = "giaban")
     private double giaban;

@@ -1,6 +1,6 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.service.DatlichService;
+import com.qlda.nhom6.service.DatlichService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

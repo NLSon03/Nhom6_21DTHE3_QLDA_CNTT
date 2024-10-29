@@ -1,6 +1,6 @@
 package com.qlda.nhom6.repository;
 
-import com.NgocHieu.Buoi22.model.NhaSanXuat;
+import com.qlda.nhom6.model.NhaSanXuat;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;

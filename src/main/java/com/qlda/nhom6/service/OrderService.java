@@ -1,9 +1,9 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.*;
-import com.NgocHieu.Buoi22.repository.IThuocRepository;
-import com.NgocHieu.Buoi22.repository.OrderDetailRepository;
-import com.NgocHieu.Buoi22.repository.OrderRepository;
+import com.qlda.nhom6.model.*;
+import com.qlda.nhom6.repository.IThuocRepository;
+import com.qlda.nhom6.repository.OrderDetailRepository;
+import com.qlda.nhom6.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

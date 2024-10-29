@@ -1,8 +1,8 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.model.Category;
-import com.NgocHieu.Buoi22.model.LoaiThuoc;
-import com.NgocHieu.Buoi22.service.CategoryService;
+import com.qlda.nhom6.model.Category;
+import com.qlda.nhom6.model.LoaiThuoc;
+import com.qlda.nhom6.service.CategoryService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

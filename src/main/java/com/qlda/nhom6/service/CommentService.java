@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.Comment;
-import com.NgocHieu.Buoi22.repository.CommentRepository;
+import com.qlda.nhom6.model.Comment;
+import com.qlda.nhom6.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

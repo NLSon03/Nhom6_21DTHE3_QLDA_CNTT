@@ -1,17 +1,18 @@
-package com.example.demo.model;
-
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.util.Set;
+import lombok.Data;
+
 @Data
 @Entity
-@Table(name = "Cart")
-public class Cart {
+@Table(name = "Menu")
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CART")
+    @Column(name = "ID_MENU")
     private int id;
+    @Column(name = "TITLE", nullable = false)
+    private String title;
     @Column(name = "DATEBEGIN", nullable = false)
     private java.sql.Date dateBegin;
     @Column(name = "META")
@@ -22,5 +23,4 @@ public class Cart {
     private String link;
     @Column(name = "HIDE", nullable = false)
     private boolean hide;
-
 }

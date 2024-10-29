@@ -1,6 +1,6 @@
 package com.qlda.nhom6.viewmodels;
 
-import com.NgocHieu.Buoi22.model.NhaSanXuat;
+import com.qlda.nhom6.model.NhaSanXuat;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.Builder;
 

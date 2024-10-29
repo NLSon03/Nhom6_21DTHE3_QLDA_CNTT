@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,6 +6,7 @@ import lombok.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -22,7 +23,6 @@ public class Thuoc {
     @Column(name = "Tenthuoc", length = 50, nullable = false)
 
     private String Tenthuoc;
-   
 
 
     @Column(name = "Nguongoc", length = 50, nullable = false)
@@ -44,7 +44,7 @@ public class Thuoc {
     private String Congdung;
 
     @Column(name = "phantacdung", length = 50, nullable = false)
-    private String  phantacdung;
+    private String phantacdung;
 
 
     @Column(name = "cachdung", length = 50, nullable = false)
@@ -59,33 +59,33 @@ public class Thuoc {
     private String baoquan;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="Maloai",referencedColumnName = "id")
+    @JoinColumn(name = "Maloai", referencedColumnName = "id")
     @ToString.Exclude
     private LoaiThuoc loaithuoc;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_id",referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ToString.Exclude
     private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="MaNSX",referencedColumnName = "id")
+    @JoinColumn(name = "MaNSX", referencedColumnName = "id")
     @ToString.Exclude
     private NhaSanXuat nhaSanXuat;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ma_dvt",referencedColumnName = "MaDVT")
+    @JoinColumn(name = "ma_dvt", referencedColumnName = "MaDVT")
     @ToString.Exclude
     private DonViTinh donViTinh;
 
     @OneToMany(mappedBy = "thuoc", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<ChiTietHoaDonXuat> itemInvoices = new ArrayList<>();
+    private final List<ChiTietHoaDonXuat> itemInvoices = new ArrayList<>();
 
-    @OneToMany(mappedBy = "thuoc",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "thuoc", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<ChiTietHoaDonNhap> itemNhaps = new ArrayList<>();
+    private final List<ChiTietHoaDonNhap> itemNhaps = new ArrayList<>();
 
     private String Image;
 

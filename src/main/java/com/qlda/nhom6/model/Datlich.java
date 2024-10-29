@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +17,7 @@ public class Datlich {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private  Long id;
+    private Long id;
 
 
     private String Name;
@@ -34,7 +34,7 @@ public class Datlich {
     private User user;
 */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="Doctor-id",referencedColumnName = "id")
+    @JoinColumn(name = "Doctor-id", referencedColumnName = "id")
     @ToString.Exclude
     private Doctor doctor;
 }

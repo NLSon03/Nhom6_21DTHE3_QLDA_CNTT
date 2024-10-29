@@ -1,9 +1,9 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.exception.InsufficientStockException;
-import com.NgocHieu.Buoi22.model.CartItem;
-import com.NgocHieu.Buoi22.model.Thuoc;
-import com.NgocHieu.Buoi22.repository.IThuocRepository;
+import com.qlda.nhom6.exception.InsufficientStockException;
+import com.qlda.nhom6.model.CartItem;
+import com.qlda.nhom6.model.Thuoc;
+import com.qlda.nhom6.repository.IThuocRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -17,6 +17,7 @@ public class CartService {
     private final List<CartItem> cartItems = new ArrayList<>();
     @Autowired
     private IThuocRepository productRepository;
+
     public void addToCart(Long productId, int quantity) throws InsufficientStockException {
         Thuoc product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found: " + productId));
@@ -36,6 +37,7 @@ public class CartService {
             cartItems.add(new CartItem(product, quantity));
         }
     }
+
     public void updateCartItemQuantity(Long productId, int quantity) throws InsufficientStockException {
         CartItem cartItem = findCartItemByProductId(productId);
         if (cartItem != null) {
@@ -44,11 +46,13 @@ public class CartService {
             cartItem.setQuantity(quantity);
         }
     }
+
     private void validateStockAvailability(Thuoc product, int quantity) throws InsufficientStockException {
         if (product.getSoluong() < quantity) {
             throw new InsufficientStockException("Insufficient stock for product: " + product.getTenthuoc());
         }
     }
+
     public double calculateTotalAmount() {
         return cartItems.stream()
                 .mapToDouble(item -> item.getProduct().getGiaban() * item.getQuantity())
@@ -61,17 +65,18 @@ public class CartService {
                 .findFirst()
                 .orElse(null);
     }
+
     public List<CartItem> getCartItems() {
         return cartItems;
     }
+
     public void removeFromCart(Long productId) {
         cartItems.removeIf(item -> Long.valueOf(item.getProduct().getIdthuoc()).equals(productId));
     }
+
     public void clearCart() {
         cartItems.clear();
     }
 
 
-
 }
-

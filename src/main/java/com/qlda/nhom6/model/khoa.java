@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,11 +25,7 @@ public class khoa {
 
     @OneToMany(mappedBy = "Khoa", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<Doctor> doctors = new ArrayList<>();
-
-
-
-
+    private final List<Doctor> doctors = new ArrayList<>();
 
 
 }

@@ -1,14 +1,17 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Data;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "role")
@@ -25,11 +28,13 @@ public class Role implements GrantedAuthority {
     private String description;
     @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private Set<User> users = new HashSet<>();
+    private final Set<User> users = new HashSet<>();
+
     @Override
     public String getAuthority() {
         return name;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,6 +43,7 @@ public class Role implements GrantedAuthority {
         Role role = (Role) o;
         return getId() != null && Objects.equals(getId(), role.getId());
     }
+
     @Override
     public int hashCode() {
         return getClass().hashCode();

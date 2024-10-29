@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.LoaiThuoc;
-import com.NgocHieu.Buoi22.repository.IloaiThuoc;
+import com.qlda.nhom6.model.LoaiThuoc;
+import com.qlda.nhom6.repository.IloaiThuoc;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

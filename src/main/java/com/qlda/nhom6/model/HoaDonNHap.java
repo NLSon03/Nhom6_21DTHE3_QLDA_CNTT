@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,6 +30,6 @@ public class HoaDonNHap {
     @JoinColumn(name = "NPP", referencedColumnName = "MaNPP")
     @ToString.Exclude
     private NhaPhanPhoi nhaphanphoi;
-    
+
 
 }

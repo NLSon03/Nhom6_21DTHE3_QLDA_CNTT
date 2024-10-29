@@ -1,17 +1,22 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
+
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+
 @Data
 @Entity
-@Table(name = "Menu")
-public class Menu {
+@Table(name = "Blog")
+public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_MENU")
+    @Column(name = "ID_BLOG")
     private int id;
     @Column(name = "TITLE", nullable = false)
     private String title;
+    @Column(name = "IMG")
+    private String img;
+    @Column(name = "DETAIL")
+    private String detail;
     @Column(name = "DATEBEGIN", nullable = false)
     private java.sql.Date dateBegin;
     @Column(name = "META")

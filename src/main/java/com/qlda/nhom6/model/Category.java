@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +18,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id ;
+    private Long id;
 
     @Column(name = "ten", length = 50, nullable = false)
     private String ten;
@@ -26,12 +26,12 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<Thuoc> thuocs = new ArrayList<>();
+    private final List<Thuoc> thuocs = new ArrayList<>();
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<LoaiThuoc> subcategories;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LoaiThuoc> loaiThuocs = new ArrayList<>();
+    private final List<LoaiThuoc> loaiThuocs = new ArrayList<>();
 
 }

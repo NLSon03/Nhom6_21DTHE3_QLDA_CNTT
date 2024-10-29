@@ -1,5 +1,7 @@
 package com.qlda.nhom6;
 
+import com.qlda.nhom6.service.OAuthService;
+import com.qlda.nhom6.service.UserService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

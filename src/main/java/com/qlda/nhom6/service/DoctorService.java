@@ -1,9 +1,9 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.Doctor;
-import com.NgocHieu.Buoi22.model.Timming;
-import com.NgocHieu.Buoi22.repository.ITimingRepository;
-import com.NgocHieu.Buoi22.repository.IdocterRepository;
+import com.qlda.nhom6.model.Doctor;
+import com.qlda.nhom6.model.Timming;
+import com.qlda.nhom6.repository.ITimingRepository;
+import com.qlda.nhom6.repository.IdocterRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.Product;
-import com.NgocHieu.Buoi22.repository.ProductRepository;
+import com.qlda.nhom6.model.Product;
+import com.qlda.nhom6.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

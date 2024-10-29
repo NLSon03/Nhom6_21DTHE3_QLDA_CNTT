@@ -1,7 +1,7 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.model.DonViTinh;
-import com.NgocHieu.Buoi22.service.DonVTService;
+import com.qlda.nhom6.model.DonViTinh;
+import com.qlda.nhom6.service.DonVTService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

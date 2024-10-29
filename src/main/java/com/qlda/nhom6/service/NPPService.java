@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.NhaPhanPhoi;
-import com.NgocHieu.Buoi22.repository.INhaPPRepository;
+import com.qlda.nhom6.model.NhaPhanPhoi;
+import com.qlda.nhom6.repository.INhaPPRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

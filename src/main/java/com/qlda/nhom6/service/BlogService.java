@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.Blog;
-import com.NgocHieu.Buoi22.repository.BlogRepository;
+import com.qlda.nhom6.model.Blog;
+import com.qlda.nhom6.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

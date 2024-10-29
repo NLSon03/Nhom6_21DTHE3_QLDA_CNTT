@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +23,6 @@ public class DonViTinh {
     @Column(name = "TenDVT", length = 50, nullable = false)
     private String TenDVT;
 
-    @OneToMany(mappedBy = "donViTinh",cascade = CascadeType.ALL)
-    private List<Thuoc> thuocs = new ArrayList<>();
+    @OneToMany(mappedBy = "donViTinh", cascade = CascadeType.ALL)
+    private final List<Thuoc> thuocs = new ArrayList<>();
 }

@@ -1,8 +1,8 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.model.LoaiThuoc;
-import com.NgocHieu.Buoi22.model.Thuoc;
-import com.NgocHieu.Buoi22.service.*;
+import com.qlda.nhom6.model.LoaiThuoc;
+import com.qlda.nhom6.model.Thuoc;
+import com.qlda.nhom6.service.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;

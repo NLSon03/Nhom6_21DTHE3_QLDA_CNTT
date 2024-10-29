@@ -1,7 +1,7 @@
 package com.qlda.nhom6.service;
 
-import com.NgocHieu.Buoi22.model.NhaSanXuat;
-import com.NgocHieu.Buoi22.repository.NSXRepsitory;
+import com.qlda.nhom6.model.NhaSanXuat;
+import com.qlda.nhom6.repository.NSXRepsitory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

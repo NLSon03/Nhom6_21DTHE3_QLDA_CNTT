@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,16 +25,14 @@ public class NhaPhanPhoi {
     @Column(name = "DiaChi", length = 50, nullable = false)
     private String DiaChi;
     @Column(name = "email", length = 50, nullable = false)
-    private String email ;
+    private String email;
     @Column(name = "MaSoThue")
     private int MaSoThue;
 
     private String GhiChu;
     @OneToMany(mappedBy = "nhaphanphoi", cascade = CascadeType.ALL)
-    private Set<HoaDonNHap> InvoiceEntrys = new HashSet<>();
+    private final Set<HoaDonNHap> InvoiceEntrys = new HashSet<>();
 
-
-    
 
 }
 

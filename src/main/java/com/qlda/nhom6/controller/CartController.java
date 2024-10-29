@@ -1,7 +1,7 @@
 package com.qlda.nhom6.controller;
 
-import com.NgocHieu.Buoi22.exception.InsufficientStockException;
-import com.NgocHieu.Buoi22.service.CartService;
+import com.qlda.nhom6.exception.InsufficientStockException;
+import com.qlda.nhom6.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

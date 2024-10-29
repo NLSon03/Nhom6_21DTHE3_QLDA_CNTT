@@ -1,10 +1,11 @@
-package com.example.demo.model;
+package com.qlda.nhom6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -26,12 +27,12 @@ public class NhaSanXuat {
 
     @Column(name = "Diachi", length = 50, nullable = false)
     private String Diachi;
-    @Column(name = "DienThoai" , length = 10, nullable = false  )
+    @Column(name = "DienThoai", length = 10, nullable = false)
     private int DienThoai;
 
-    @OneToMany(mappedBy= "nhaSanXuat",cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "nhaSanXuat", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<Thuoc> thuocs= new ArrayList<>();
+    private final List<Thuoc> thuocs = new ArrayList<>();
 
 
 }
