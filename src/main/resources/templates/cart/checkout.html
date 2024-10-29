@@ -1,0 +1,286 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout1}">-->
+<!--<head>-->
+<!--&lt;!&ndash;  <title th:text="${title} ?: 'Your Cart'">Place Order</title>&ndash;&gt;-->
+<!--  <link rel="stylesheet"-->
+<!--        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<section layout:fragment="content" class="container mt-3">-->
+<!--  <h1>Place Your Order</h1>-->
+<!--  <form th:action="@{/order/submit}" method="post">-->
+<!--    <div class="mb-3">-->
+<!--      <label for="customerName" class="form-label">Your Name:</label>-->
+<!--      <input type="text" id="customerName" name="customerName" class="form-control" required>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="shippingAddress" class="form-label">Shipping Address:</label>-->
+<!--      <input type="text" id="shippingAddress" name="shippingAddress" class="form-control" required>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="phoneNumber" class="form-label">Phone Number:</label>-->
+<!--      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="email" class="form-label">Email:</label>-->
+<!--      <input type="email" id="email" name="email" class="form-control" required>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="notes" class="form-label">Order Notes:</label>-->
+<!--      <textarea id="notes" name="notes" class="form-control"></textarea>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--      <label for="paymentMethod" class="form-label">Payment Method:</label>-->
+<!--      <select id="paymentMethod" name="paymentMethod" class="form-control" required>-->
+<!--        <option value="creditCard">Credit Card</option>-->
+<!--        <option value="paypal">PayPal</option>-->
+<!--        <option value="bankTransfer">Bank Transfer</option>-->
+<!--        <option value="cashOnDelivery">Cash on Delivery</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">Submit Order</button>-->
+<!--  </form>-->
+
+
+
+<!--</section>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Mirrored from skyethemes.com/html/2022/medicoz/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jun 2024 09:38:29 GMT -->
+<head th:replace="Fragment/head :: head"></head>
+
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader"></div>
+
+  <!-- Main Header-->
+  <header th:replace="Fragment/header1 :: header1"></header>
+  <!--End Main Header -->
+
+  <!--Page Title-->
+  <section class="page-title" style="background-image: url(/fe/images/background/8.jpg);">
+    <div class="auto-container">
+      <div class="title-outer">
+        <h1>Checout</h1>
+        <ul class="page-breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li>Shop</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--End Page Title-->
+
+  <!--CheckOut Page-->
+  <form th:action="@{/order/submit}" method="post">
+    <section class="checkout-page">
+    <div class="auto-container">
+      <!--Checkout Details-->
+      <div class="checkout-form">
+        <form method="post" action="https://skyethemes.com/html/2022/medicoz/checkout.html">
+          <div class="row clearfix">
+            <!--Column-->
+            <div class="column col-lg-6 col-md-12 col-sm-12">
+              <div class="inner-column">
+                <div class="sec-title">
+                  <h3>Billing Details</h3>
+                </div>
+
+                <div class="row clearfix">
+                  <!--Form Group-->
+                  <div class="form-group col-md-12 col-sm-12">
+                    <div class="field-label">Tên Khách Hàng</div>
+                    <input type="text" id="customerName" name="customerName" class="form-control" required>
+                  </div>
+
+                  <!--Form Group-->
+                  <div class="form-group col-md-6 col-sm-12">
+                    <div class="field-label">Địa Chỉ</div>
+                    <input type="text" id="shippingAddress" name="shippingAddress" class="form-control" required>
+                  </div>
+
+                  <!--Form Group-->
+                  <div class="form-group col-md-6 col-sm-12">
+                    <div class="field-label">Số Điện Thoại</div>
+                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required>
+                  </div>
+
+                  <!--Form Group-->
+                  <div class="form-group col-md-12 col-sm-12">
+                    <div class="field-label">Email</div>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                  </div>
+
+
+                  <!--Form Group-->
+                  <div class="form-group col-md-12 col-sm-12">
+                    <div class="field-label">Ghi Chú</div>
+                    <textarea id="notes" name="notes" class="form-control"></textarea>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--End Checkout Details-->
+
+      <!--Order Box-->
+      <div class="order-box">
+        <div class="sec-title">
+          <h3>Your Order</h3>
+        </div>
+        <div class="title-box clearfix">
+          <div class="col">PRODUCT</div>
+          <div class="col">TOTAL</div>
+        </div>
+        <ul>
+          <li class="clearfix"><strong>Product Title</strong><span>$35.00</span></li>
+          <li class="clearfix">SUBTOTAL<span>$35.00</span></li>
+          <li class="clearfix">SHIPPING<span class="free">Free Shipping</span></li>
+          <li class="clearfix">TOTAL<span>$35.00</span></li>
+        </ul>
+      </div>
+      <!--End Order Box-->
+
+      <!--Payment Box-->
+      <div class="payment-box">
+        <div class="upper-box">
+          <!--Payment Options-->
+          <div class="payment-options">
+            <ul>
+              <li>
+                <div class="radio-option">
+                  <input type="radio" value="bankTransfer" name="paymentMethod" id="payment-2" checked>
+                  <label for="payment-2"><strong>Direct Bank Transfer</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
+                </div>
+              </li>
+              <li>
+                <div class="radio-option">
+                  <input type="radio" value="cashOnDelivery" name="paymentMethod" id="payment-1">
+                  <label for="payment-1"><strong>Cash on Delivery</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
+                </div>
+              </li>
+              <li>
+                <div class="radio-option">
+                  <input type="radio" value="creditCard" name="paymentMethod" id="payment-3">
+                  <label for="payment-3"><strong>Credit Card</strong><span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span></label>
+                </div>
+              </li>
+              <li>
+                <div class="radio-option">
+                  <input type="radio" value="vnpay" name="paymentMethod" id="payment-4">
+                  <label for="payment-4"><strong>PayPal</strong><span class="image"><img src="/fe/images/icons/paypal.png" alt="" /></span></label>
+                  <a href="#" class="what-paypall">What is PayPal?</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="lower-box">
+          <button type="submit" class="theme-btn btn-style-one"><span class="btn-title">Place Order</span></button>
+
+        </div>
+      </div>
+      <!--End Payment Box-->
+    </div>
+  </section>
+  </form>
+  <!--End CheckOut Page-->
+
+  <!-- Clients Section -->
+  <section class="clients-section alternate">
+    <div class="auto-container">
+
+      <!-- Sponsors Outer -->
+      <div class="sponsors-outer">
+        <!--clients carousel-->
+        <ul class="clients-carousel owl-carousel owl-theme">
+          <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/1.png}" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/2.png}" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/3.png}" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/4.png}" alt=""></a> </li>
+          <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/5.png}" alt=""></a> </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--End Clients Section -->
+
+  <!-- Main Footer -->
+  <footer th:replace="Fragment/footer :: footer"></footer>
+  <!--End Main Footer -->
+
+</div><!-- End Page Wrapper -->
+
+
+<!-- Color Palate / Color Switcher -->
+<div class="color-palate">
+  <div class="inner-palate">
+    <div class="color-trigger"><i class="fa fa-cog"></i></div>
+    <div class="color-palate-head"><h5>GET AN AWESOME START!</h5></div>
+    <div class="various-color clearfix">
+      <div class="colors-list">
+        <h6>Choose Your Color</h6>
+        <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
+        <span class="palate tealblue-color" data-theme-file="css/color-themes/tealblue.css"></span>
+        <span class="palate scarlet-color" data-theme-file="css/color-themes/scarlet.css"></span>
+        <span class="palate kellygreen-color" data-theme-file="css/color-themes/kellygreen.css"></span>
+        <span class="palate dodgerblue-color" data-theme-file="css/color-themes/dodgerblue.css"></span>
+        <span class="palate red-color" data-theme-file="css/color-themes/red.css"></span>
+        <span class="palate selectiveyellow-color" data-theme-file="css/color-themes/selectiveyellow.css"></span>
+        <span class="palate maroon-color" data-theme-file="css/color-themes/maroon.css"></span>
+        <span class="palate brown-color" data-theme-file="css/color-themes/brown.css"></span>
+        <span class="palate green-color" data-theme-file="css/color-themes/green.css"></span>
+        <span class="palate duchessblue-color" data-theme-file="css/color-themes/duchessblue.css"></span>
+        <span class="palate lightblue-color" data-theme-file="css/color-themes/lightblue.css"></span>
+        <span class="palate frenchgray-color" data-theme-file="css/color-themes/frenchgray.css"></span>
+        <span class="palate telemagenta-color" data-theme-file="css/color-themes/telemagenta.css"></span>
+        <span class="palate signalviolet-color" data-theme-file="css/color-themes/signalviolet.css"></span>
+      </div>
+    </div>
+    <div class="lower-options">
+      <h6>RTL Supported</h6>
+      <ul class="rtl-version option-box"> <li class="active">LTR</li> <li class="rtl">RTL</li> </ul>
+      <h6>Box &amp; Wide layout</h6>
+      <ul class="box-version option-box"> <li class="active">Wide</li> <li class="box">Boxed</li> </ul>
+      <div class="box-mode-bg">
+        <h6>Boxed Mode Backgrounds</h6>
+        <ul class="clearfix">
+          <li class="active" style="background-image: url(/fe/images/background/boxed-bg/1.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/2.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/3.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/4.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/5.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/6.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/7.png);"></li>
+          <li style="background-image: url(/fe/images/background/boxed-bg/8.png);"></li>
+        </ul>
+      </div>
+      <div class="palate-foo">
+        <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
+      </div>
+      <a href="https://themeforest.net/item/medicoz-clinic-hospital-html-template/28397578?ref=bold_touch" class="purchase-btn">Purchase now $12</a>
+    </div>
+  </div>
+</div><!-- End Color Switcher -->
+
+<div th:replace="Fragment/script :: script"></div>
+</body>
+
+<!-- Mirrored from skyethemes.com/html/2022/medicoz/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jun 2024 09:38:30 GMT -->
+</html>
+
+

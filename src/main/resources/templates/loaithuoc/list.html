@@ -1,0 +1,243 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Danh sách Loại Thuốc</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Danh sách Loại Thuốc</h1>-->
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>ID</th>-->
+<!--        <th>Tên Loại</th>-->
+<!--        <th>Ghi Chú</th>-->
+<!--        <th>Hành động</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="loaiThuoc : ${loaithuocs}">-->
+<!--        <td th:text="${loaiThuoc.getId()}">ID</td>-->
+<!--        <td th:text="${loaiThuoc.getTenLoai()}">Tên Loại</td>-->
+<!--        <td th:text="${loaiThuoc.getGhiChu()}">Ghi Chú</td>-->
+<!--        <td>-->
+<!--            <a th:href="@{/loai-thuoc/edit/{id}(id=${loaiThuoc.id})}">Sửa</a>-->
+<!--            <a th:href="@{/loai-thuoc/delete/{id}(id=${loaiThuoc.id})}">Xóa</a>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--<a href="/loai-thuoc/add">Thêm Loại Thuốc Mới</a>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/headAdmin :: headAdmin">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+</head>
+<body id="crancy-dark-light">
+<div class="crancy-body-area">
+    <!-- crancy Admin Menu -->
+    <div th:replace="Fragment/AdminMenu :: AdminMenu"></div>
+    <!-- End crancy Admin Menu -->
+
+    <!-- Start Header -->
+    <header th:replace="Fragment/AdminHeader :: AdminHeader"></header>
+    <!-- End Header -->
+
+    <!-- crancy Dashboard -->
+    <section class="crancy-adashboard crancy-show">
+        <div class="container container__bscreen">
+
+            <div class="row">
+                <div class="col-xxl-8 col-12 crancy-main__column">
+                    <div class="crancy-body">
+                        <!-- Dashboard Inner -->
+                        <div class="crancy-dsinner">
+                            <div class="row crancy-gap-30">
+                                <div class="col-12">
+
+                                </div>
+                            </div>
+                            <h1>Danh Sách Loại Thuốc</h1>
+                            <div class="crancy-table crancy-table--v3 mg-top-30">
+                                <div class="crancy-customer-filter">
+                                    <div
+                                            class="crancy-customer-filter__single crancy-customer-filter__single--csearch"
+                                    >
+                                        <div
+                                                class="crancy-header__form crancy-header__form--customer"
+                                        >
+                                            <form class="crancy-header__form-inner" action="#">
+                                                <button class="search-btn" type="submit">
+                                                    <svg
+                                                            width="20"
+                                                            height="20"
+                                                            viewBox="0 0 20 20"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <circle
+                                                                cx="9.78639"
+                                                                cy="9.78614"
+                                                                r="8.23951"
+                                                                stroke="#9AA2B1"
+                                                                stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                        ></circle>
+                                                        <path
+                                                                d="M15.5176 15.9448L18.7479 19.1668"
+                                                                stroke="#9AA2B1"
+                                                                stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                        ></path>
+                                                    </svg>
+                                                </button>
+                                                <input
+                                                        name="s"
+                                                        value=""
+                                                        type="text"
+                                                        placeholder="Search by ID, product, or others..."
+                                                />
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="crancy-customer-filter__single">
+                                        <a
+                                                href="#"
+                                                class="crancy-customer-filter__single--button"
+                                        >
+                                            <img th:src="@{/fe/admin/img/filter-icon3.svg}" />Filters
+                                        </a>
+                                    </div>
+                                    <div class="crancy-customer-filter__single">
+                                        <a
+                                                href="#"
+                                                class="crancy-customer-filter__single--button"
+                                        >
+                                            <img th:src="@{/fe/admin/img/calendar-icon-2.svg}" />April 11 - April
+                                            24
+                                        </a>
+                                    </div>
+                                    <div class="crancy-customer-filter__single">
+                                        <a
+                                                href="#"
+                                                class="crancy-customer-filter__single--button"
+                                        >
+                                            <img th:src="@{/fe/admin/img/download-icon2.svg}" />Download
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- crancy Table -->
+                                <table
+                                        id="crancy-table__main"
+                                        class="crancy-table__main crancy-table__main-v3"
+                                >
+                                    <!-- crancy Table Head -->
+                                    <thead class="crancy-table__head">
+                                    <tr>
+                                        <th class="crancy-table__column-1 crancy-table__h1">
+                                            <div class="crancy-wc__checkbox">
+                                                <span>ID</span>
+<!--                                                <span>Ảnh</span>-->
+                                            </div>
+                                        </th>
+                                        <th class="crancy-table__column-2 crancy-table__h2">
+                                            Tên Loại Thuốc
+                                        </th>
+                                        <th class="crancy-table__column-2 crancy-table__h2">
+                                            Ghi Chú
+                                        </th>
+                                        <th class="crancy-table__column-2 crancy-table__h2">
+                                            Tên Danh Mục
+                                        </th>
+                                        <th class="crancy-table__column-6 crancy-table__h6">
+                                            Hành động
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <!-- crancy Table Body -->
+                                    <tbody class="crancy-table__body" >
+                                    <tr th:each="loaithuoc : ${loaithuocs}">
+                                        <td
+                                                class="crancy-table__column-1 crancy-table__data-1"
+                                        >
+                                            <div class="crancy-table__customer">
+                                                <div class="crancy-wc__checkbox">
+                                                    <span th:text="${loaithuoc.id}"></span>
+                                                    <label
+
+                                                            class="crancy-table__customer-img"
+                                                    >
+<!--                                                        <img th:src="@{'/' + ${blog.img}}" alt="#" />-->
+                                                        <!--                            <h4 class="crancy-table__product-title" th:text="${blog.title}">-->
+
+                                                        <!--                            </h4>-->
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td
+                                                class="crancy-table__column-2 crancy-table__data-2"
+                                        >
+                                            <h4 class="crancy-table__product-title" th:text="${loaithuoc.tenLoai}">
+
+                                            </h4>
+                                        </td>
+                                        <td
+                                                class="crancy-table__column-2 crancy-table__data-2"
+                                        >
+                                            <h4 class="crancy-table__product-title" th:text="${loaithuoc.ghiChu}">
+
+                                            </h4>
+                                        </td>
+                                        <td
+                                                class="crancy-table__column-2 crancy-table__data-2"
+                                        >
+                                            <h4 class="crancy-table__product-title" th:text="${loaithuoc.category.ten}">
+
+                                            </h4>
+                                        </td>
+
+                                        <td class="crancy-table__column-5 crancy-table__data-5">
+                                            <div>
+                                                <a th:href="@{/loaithuocs/edit/{id}(id=${loaithuoc.id})}"
+                                                   class="btn btn-success btn-sm">Sửa</a>
+                                                <a th:href="@{/loaithuocs/delete/{id}(id=${loaithuoc.id})}"
+                                                   class="btn btn-danger btn-sm"
+                                                   onclick="return confirm('Bạn có chắc không?')">Xóa</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                    <!-- End crancy Table Body -->
+                                </table>
+                                <!-- End crancy Table -->
+                            </div>
+                        </div>
+                        <!-- End Dashboard Inner -->
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-12 crancy-main__sidebar">
+                    <!-- Crancy Sidebar -->
+
+                    <!-- End Crancy Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End crancy Dashboard -->
+</div>
+
+<div th:replace="Fragment/scriptAdmin :: scriptAdmin"></div>
+</body>
+
+</html>

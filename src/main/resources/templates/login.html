@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="keywords" content="Site keywords here" />
+  <meta name="description" content="#" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Site Title -->
+  <title>Zomur - Modern Bootstrap Dashboard Template</title>
+
+  <!-- Fav Icon -->
+  <link rel="icon" href="img/favicon.png" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" th:href="@{/fe/admin/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/slick.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/font-awesome-all.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/charts.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/datatables.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/fancy-box.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/nice-select.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/pikaday.min.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/reset.css}" />
+  <link rel="stylesheet" th:href="@{/fe/admin/css/style.css}" />
+</head>
+<body id="crancy-dark-light">
+<div class="body-bg">
+  <section class="crancy-wc crancy-wc__full crancy-bg-cover">
+    <div class="crancy-wc__form">
+      <div class="crancy-wc__form--middle">
+        <div class="crancy-wc__form-inner">
+          <div class="crancy-wc__logo">
+            <a href="index.html"><img th:src="@{fe/admin/img/logo.png}" alt="#" /></a>
+          </div>
+          <div class="crancy-wc__form-inside">
+            <div class="crancy-wc__form-middle">
+              <div class="crancy-wc__form-top">
+                <div class="crancy-wc__heading pd-btm-20">
+                  <h1 class="crancy-wc__form-title crancy-wc__form-title__one m-0">Đăng Nhập</h1>
+                </div>
+                <!-- Sign in Form -->
+                <form th:action="@{/login}" method="post">
+                  <div th:if="${param.error}" class="alert alert-danger">Tên người dùng và mật khẩu không hợp lệ.</div>
+                  <div th:if="${param.logout}" class="alert alert-success">Bạn đã được đăng xuất.</div>
+                  <div class="form-group">
+                    <div class="form-group__input">
+                      <input type="text" class="crancy-wc__form-input" required id="username" name="username" placeholder="Tên đăng nhập">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-group__input">
+                      <input type="password" class="crancy-wc__form-input" required id="password" name="password" placeholder="Mật khẩu">
+                      <span class="crancy-wc__toggle"><i class="fas fa-eye" id="toggle-icon"></i></span>
+                    </div>
+                  </div>
+                  <br><br>
+                  <div class="form-group">
+                    <div class="crancy-wc__check-inline">
+                      <div class="crancy-wc__checkbox">
+                        <input class="crancy-wc__form-check" id="checkbox" name="checkbox" type="checkbox" />
+                        <label for="checkbox">Ghi Nhớ</label>
+                      </div>
+                      <div class="crancy-wc__forgot">
+                        <a href="#" class="forgot-pass">Quên Mật Khẩu?</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mg-top-30">
+                    <div class="crancy-wc__button">
+                      <button class="ntfmax-wc__btn" type="submit">Đăng nhập</button>
+                    </div>
+                    <div class="crancy-wc__form-login--label"><span>Hoặc đăng nhập với</span></div>
+
+                    <div class="crancy-wc__button--group" style="margin-left: 70px;width: 500px">
+                      <a href="/oauth2/authorization/google" role="button">
+                      <button class="ntfmax-wc__btn ntfmax-wc__btn--two" type="button" style="width: 300px">
+                        <div class="ntfmax-wc__btn-icon"><img  th:src="@{fe/admin/img/google-logo.png}" /></div>
+                        Google
+                      </button>
+                      </a>
+                    </div>
+
+                  </div>
+                  <div class="form-group form-mg-top30">
+                    <div class="crancy-wc__bottom">
+                      <p class="crancy-wc__text">Bạn Chưa Có Tài Khoản? <a th:href="${'/register'}">Đăng kí</a></p>
+                    </div>
+                  </div>
+                </form>
+                <!-- End Sign in Form -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="crancy-wc__banner crancy-bg-cover" style="background-image: url(/fe/admin/img/welcome-vector-shape.png)">
+          <div class="crancy-wc__banner--img"><img th:src="@{fe/admin/img/welcome-vector.png}" alt="#" /></div>
+          <div class="crancy-wc__slider">
+            <div class="single-slider">
+              <div class="crancy-wc__slider--single">
+                <div class="crancy-wc__slider--content">
+                  <h4 class="crancy-wc__slider--title"></h4>
+                  <p class="crancy-wc__slider--text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="single-slider">
+              <div class="crancy-wc__slider--single">
+                <div class="crancy-wc__slider--content">
+                  <h4 class="crancy-wc__slider--title"></h4>
+                  <p class="crancy-wc__slider--text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="single-slider">
+              <div class="crancy-wc__slider--single">
+                <div class="crancy-wc__slider--content">
+                  <h4 class="crancy-wc__slider--title"></h4>
+                  <p class="crancy-wc__slider--text"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Scripts -->
+<script th:src="@{/fe/admin/js/jquery.min.js}"></script>
+<script th:src="@{/fe/admin/js/jquery-migrate.js}"></script>
+<script th:src="@{/fe/admin/js/popper.min.js}"></script>
+<script th:src="@{/fe/admin/js/bootstrap.min.js}"></script>
+<script th:src="@{/fe/admin/js/slick.min.js}"></script>
+<script th:src="@{/fe/admin/js/charts.js}"></script>
+<script th:src="@{/fe/admin/js/final-countdown.min.js}"></script>
+<script th:src="@{/fe/admin/js/fancy-box.min.js}"></script>
+<!-- <script src="/fe/admin/js/datatables.min.js"></script> -->
+<script th:src="@{/fe/admin/js/circle-progress.min.js}"></script>
+<script th:src="@{/fe/admin/js/nice-select.min.js}"></script>
+<script th:src="@{/fe/admin/js/pikaday.min.js}"></script>
+<script th:src="@{/fe/admin/js/main.js}"></script>
+<script>
+  var crancyWCSlider = jQuery(".crancy-wc__slider").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    fade: true,
+    infinite: true,
+    arrows: false,
+    speed: 300,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+  });
+</script>
+</body>
+</html>

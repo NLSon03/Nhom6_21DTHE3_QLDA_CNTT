@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Fragment/head :: head"></head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <!-- Main Header-->
+    <header th:replace="Fragment/header1 :: header1"></header>
+    <!--End Main Header -->
+
+    <!--Page Title-->
+    <section class="page-title" style="background-image: url(/fe/images/background/8.jpg);">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1>Shopping Cart</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Shop</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.quantity-input').on('input', function() {
+                var form = $(this).closest('form');
+                var quantity = $(this).val();
+                var price = parseFloat(form.find('.price').text());
+                var subtotal = quantity * price;
+                form.find('.subtotal').text(subtotal.toFixed(2));
+
+                form.find('.update-button').trigger('click');
+                updateTotalAmount();
+            });
+
+            function updateTotalAmount() {
+                var totalAmount = 0;
+                $('.subtotal').each(function() {
+                    totalAmount += parseFloat($(this).text());
+                });
+                $('#totalAmount').text(totalAmount.toFixed(2));
+            }
+        });
+    </script>
+
+    <!--Cart Section-->
+    <section class="cart-section">
+        <div class="auto-container">
+            <!--Cart Outer-->
+            <div class="cart-outer">
+                <div class="table-outer">
+                    <div th:if="${error}" class="alert alert-danger" role="alert">
+                        <span th:text="${error}"></span>
+                    </div>
+                    <div th:if="${cartItems.isEmpty()}" class="alert alert-info">Giỏ hàng đang trống</div>
+                    <table class="cart-table" th:unless="${cartItems.isEmpty()}">
+                        <thead class="cart-header">
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th class="prod-column">Tên</th>
+                            <th class="price">Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Tổng tiền</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item : ${cartItems}">
+                            <td class="prod-column">
+                                <div class="column-box">
+                                    <figure class="prod-thumb"><a href="#"><img th:src="@{ ${item.product.image}}" alt=""></a></figure>
+                                </div>
+                            </td>
+                            <td><h4 class="prod-title" th:text="${item.product.tenthuoc}"></h4></td>
+                            <td class="sub-total" th:text="${item.product.giaban}"></td>
+                            <td>
+                                <form th:action="@{/cart/update}" method="post">
+                                    <input type="hidden" name="productId" th:value="${item.product.idthuoc}" />
+                                    <input type="number" name="quantity" class="form-control d-inline-block quantity-input" min="1" th:value="${item.quantity}" style="width: 70px;"/>
+                                    <button type="submit" class="update-button" style="display: none;">Update</button>
+                                </form>
+                            </td>
+                            <td class="total" th:text="${item.product.giaban * item.quantity}"></td>
+                            <td><a th:href="@{/cart/remove/{productId}(productId=${item.product.idthuoc})}" id="" class="remove-btn"><span class="fa fa-times"></span></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cart-options clearfix">
+                    <div class="pull-left">
+                        <div class="apply-coupon clearfix">
+                            <div class="form-group clearfix">
+                                <input type="text" name="coupon-code" value="" placeholder="Coupon Code">
+                            </div>
+                            <div class="form-group clearfix">
+                                <button type="button" class="theme-btn coupon-btn">Apply Coupon</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pull-right">
+                        <a th:href="@{/cart/clear}" type="button" class="theme-btn cart-btn">Xóa tất cả thẻ</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-between">
+                <div class="column pull-left col-lg-5 col-md-6 col-sm-12">
+                    <div class="shipping-block">
+                        <div class="inner-box">
+                            <h3>Free Shipping</h3>
+                            <h4>Calculate Shipping</h4>
+
+                            <!-- Shipping Form -->
+                            <div class="shipping-form">
+                                <!--Shipping Form-->
+                                <form method="post" action="https://skyethemes.com/html/2022/medicoz/contact.html">
+                                    <div class="row clearfix">
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <input type="text" name="text" placeholder="Pakistan" required>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <input type="text" name="text" placeholder="Postcode / ZIP" required>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <input type="text" name="text" placeholder="State / County" required>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <button class="theme-btn totals-btn" type="submit" name="submit-form">Update Totals</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column pull-right col-lg-6 col-md-6 col-sm-12">
+                    <!--Totals Table-->
+                    <ul class="totals-table">
+                        <li><h3>Cart Totals</h3></li>
+                        <li class="clearfix total"><span class="col">Sub Total</span><span class="col price">$35.00</span></li>
+                        <li class="clearfix total"><span class="col">Total</span><span class="col price" id="totalAmount" th:text="${totalAmount}"></span></li>
+                        <li class="text-right"><a th:href="@{/order/checkout}" id="checkoutButton"  type="submit" class="theme-btn proceed-btn">Proceed to Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Cart Section-->
+
+    <!-- Clients Section -->
+    <section class="clients-section alternate">
+        <div class="auto-container">
+
+            <!-- Sponsors Outer -->
+            <div class="sponsors-outer">
+                <!--clients carousel-->
+                <ul class="clients-carousel owl-carousel owl-theme">
+                    <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/1.png}" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/2.png}" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/3.png}" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/4.png}" alt=""></a> </li>
+                    <li class="slide-item"> <a href="#"><img th:src="@{/fe/images/clients/5.png}" alt=""></a> </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--End Clients Section -->
+
+    <!-- Main Footer -->
+    <footer th:replace="Fragment/footer :: footer"></footer>
+    <!--End Main Footer -->
+
+</div><!-- End Page Wrapper -->
+
+
+<!-- Color Palate / Color Switcher -->
+<div class="color-palate">
+    <div class="inner-palate">
+        <div class="color-trigger"><i class="fa fa-cog"></i></div>
+        <div class="color-palate-head"><h5>GET AN AWESOME START!</h5></div>
+        <div class="various-color clearfix">
+            <div class="colors-list">
+                <h6>Choose Your Color</h6>
+                <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
+                <span class="palate tealblue-color" data-theme-file="css/color-themes/tealblue.css"></span>
+                <span class="palate scarlet-color" data-theme-file="css/color-themes/scarlet.css"></span>
+                <span class="palate kellygreen-color" data-theme-file="css/color-themes/kellygreen.css"></span>
+                <span class="palate dodgerblue-color" data-theme-file="css/color-themes/dodgerblue.css"></span>
+                <span class="palate red-color" data-theme-file="css/color-themes/red.css"></span>
+                <span class="palate selectiveyellow-color" data-theme-file="css/color-themes/selectiveyellow.css"></span>
+                <span class="palate maroon-color" data-theme-file="css/color-themes/maroon.css"></span>
+                <span class="palate brown-color" data-theme-file="css/color-themes/brown.css"></span>
+                <span class="palate green-color" data-theme-file="css/color-themes/green.css"></span>
+                <span class="palate duchessblue-color" data-theme-file="css/color-themes/duchessblue.css"></span>
+                <span class="palate lightblue-color" data-theme-file="css/color-themes/lightblue.css"></span>
+                <span class="palate frenchgray-color" data-theme-file="css/color-themes/frenchgray.css"></span>
+                <span class="palate telemagenta-color" data-theme-file="css/color-themes/telemagenta.css"></span>
+                <span class="palate signalviolet-color" data-theme-file="css/color-themes/signalviolet.css"></span>
+            </div>
+        </div>
+        <div class="lower-options">
+            <h6>RTL Supported</h6>
+            <ul class="rtl-version option-box"> <li class="active">LTR</li> <li class="rtl">RTL</li> </ul>
+            <h6>Box &amp; Wide layout</h6>
+            <ul class="box-version option-box"> <li class="active">Wide</li> <li class="box">Boxed</li> </ul>
+            <div class="box-mode-bg">
+                <h6>Boxed Mode Backgrounds</h6>
+                <ul class="clearfix">
+                    <li class="active" style="background-image: url(/fe/images/background/boxed-bg/1.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/2.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/3.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/4.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/5.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/6.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/7.png);"></li>
+                    <li style="background-image: url(/fe/images/background/boxed-bg/8.png);"></li>
+                </ul>
+            </div>
+            <div class="palate-foo">
+                <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
+            </div>
+            <a href="https://themeforest.net/item/medicoz-clinic-hospital-html-template/28397578?ref=bold_touch" class="purchase-btn">Purchase now $12</a>
+        </div>
+    </div>
+</div><!-- End Color Switcher -->
+
+<div th:replace="Fragment/script :: script"></div>
+</body>
+
+<!-- Mirrored from skyethemes.com/html/2022/medicoz/shopping-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jun 2024 09:38:29 GMT -->
+</html>
+
+
